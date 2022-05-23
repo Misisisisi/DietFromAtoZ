@@ -18,6 +18,8 @@ public class UserEntity {
     @Column(nullable = false, length = 20)
     private String password;
 
+    private String email;
+
     private String firstName;
 
     private String lastName;
