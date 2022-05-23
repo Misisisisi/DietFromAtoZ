@@ -14,7 +14,7 @@
 <html lang="en">
 
 <head>
-    <title>Kalkulator</title>
+    <title>Kalkulator zapotrzebowania</title>
     <jsp:include page="/header.jsp"/>
 </head>
 <body class="bg-gradient-primary">
@@ -78,7 +78,7 @@
                                     </spring:form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="count_BMI.jsp">Oblicz swoje BMI</a>
+                                        <a class="small" href="/count_BMI">Oblicz swoje BMI</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="plan_diet.jsp">Zaplanuj posiłki!</a>
