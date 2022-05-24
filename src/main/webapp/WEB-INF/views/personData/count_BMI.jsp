@@ -14,7 +14,7 @@
 <html lang="en">
 
 <head>
-    <title>Wynik zapotrzebowania</title>
+    <title>Kalkulator zapotrzebowania</title>
     <jsp:include page="/header.jsp"/>
 </head>
 <body class="bg-gradient-primary">
@@ -34,21 +34,25 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Twoje zapotrzebowanie wynosi:</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Aby obliczyć swoje aktualne BMI, podaj swój
+                                        wzrost oraz aktualną masę ciała.</h1>
+                                </div>
+                                <spring:form action="/count_BMI" modelAttribute="bmiCalcForm" method="post">
+                                <div class="form-group">
+                                    <label>Masa ciała [kg]<br>
+                                        <spring:input path="bodyWeight"/></label><br>
                                 </div>
                                 <div class="form-group">
-                                    <h3>DYNAMICZNA WARTOŚĆ ZAPOTRZEBOWANIA </h3><br>
-                                </div>
-                                <div class="form-group">
-
-                                    <h5>Tyle kalorii dziennie powinieneś spożywać, aby osiągnąć swój cel żywieniowy.<br></h5><br>
-
-
+                                    <label>Wzrost [cm]<br>
+                                        <spring:input path="bodyHeight"/></label><br>
                                     <div class="form-group">
-
+                                        <spring:button>Oblicz</spring:button>
+                                    </div>
+                                    <div class="form-group">
+                                        </spring:form>
                                         <hr>
                                         <div class="text-center">
-                                            <a class="small" href="/count_BMI">Oblicz swoje BMI</a>
+                                            <a class="small" href="/create_personData">Oblicz swoje zapotrzebowanie</a>
                                         </div>
                                         <div class="text-center">
                                             <a class="small" href="plan_diet.jsp">Zaplanuj posiłki!</a>

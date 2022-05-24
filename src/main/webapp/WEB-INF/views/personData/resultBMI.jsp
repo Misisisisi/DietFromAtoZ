@@ -35,52 +35,48 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Twój wskaźnik BMI wynosi:</h1>
+                                    <p>DYNAMICZNY WSKAŹNIK BMI</p>
                                 </div>
-                                <div class="form-group">
-                                    <h3>DYNAMICZNY WSKAŹNIK BMI </h3><br>
-                                </div>
-                                <div class="form-group">
-
-                                    <h5>Wartości referencyjne BMI:<br></h5><br>
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Wartości referencyjne BMI:</h1>
                                     <p>poniżej 18,5 -> niedowaga</p>
                                     <p>18,5 - 24,9 -> prawidłowa masa ciała </p>
                                     <p>25-29,9 -> nawaga</p>
                                     <p>30-34,9 -> otyłość I stopnia </p>
                                     <p>35-39,9 -> otyłość II stopnia </p>
                                     <p>powyżej 40 -> otyłość III stopnia </p>
+                                </div>
 
-                                    <div class="form-group">
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="/create_personData">Oblicz swoje zapotrzebowanie</a>
+                                </div>
+                                <div class="text-center">
+                                    <a class="small" href="plan_diet.jsp">Zaplanuj posiłki!</a>
 
-                                        <hr>
-                                        <div class="text-center">
-                                            <a class="small" href="/create_personData">Oblicz swoje zapotrzebowanie</a>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="small" href="plan_diet.jsp">Zaplanuj posiłki!</a>
-
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
         </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
     </div>
+
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+</div>
 </div>
 </body>
 

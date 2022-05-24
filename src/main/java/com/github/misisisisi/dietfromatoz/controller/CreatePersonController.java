@@ -1,6 +1,7 @@
 package com.github.misisisisi.dietfromatoz.controller;
 
-import com.github.misisisisi.dietfromatoz.model.PersonDataEntity;
+
+import com.github.misisisisi.dietfromatoz.service.CpmService;
 import com.github.misisisisi.dietfromatoz.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,11 @@ import javax.validation.Valid;
 public class CreatePersonController {
 
     private final PersonService personService;
+    private final CpmService cpmService;
+
+    double resultCPM;
+    double resultEndCPM;
+    double resultPPM;
 
     @GetMapping
     public String prepareView(Model model) {
@@ -30,7 +36,13 @@ public class CreatePersonController {
             return "/personData/create";
         } else {
             personService.savePersonData(createPersonForm);
-            return "/personData/count_CPM";
+            resultPPM=cpmService.countPPM(createPersonForm.getSex(), createPersonForm.getBodyWeight(), createPersonForm.getBodyHeight(), createPersonForm.getAge());
+            resultCPM = cpmService.countCPM( createPersonForm.getActivity());
+            resultEndCPM = cpmService.countEndCPM(createPersonForm.getAim());
+            System.out.println(resultPPM);
+            System.out.println(resultCPM);
+            System.out.println(resultEndCPM);
+            return "/personData/resultCPM";
         }
     }
 }
