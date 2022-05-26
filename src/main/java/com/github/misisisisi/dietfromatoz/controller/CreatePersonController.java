@@ -39,11 +39,20 @@ public class CreatePersonController {
             resultPPM=cpmService.countPPM(createPersonForm.getSex(), createPersonForm.getBodyWeight(), createPersonForm.getBodyHeight(), createPersonForm.getAge());
             resultCPM = cpmService.countCPM( createPersonForm.getActivity());
             resultEndCPM = cpmService.countEndCPM(createPersonForm.getAim());
+            resultPPM=Math.round(resultPPM);
+             resultCPM=Math.round(resultCPM);
+             resultEndCPM=Math.round(resultEndCPM);
             System.out.println(resultPPM);
             System.out.println(resultCPM);
             System.out.println(resultEndCPM);
             return "/personData/resultCPM";
         }
+    }
+    @ModelAttribute
+    public void addAttributes2 (Model model) {
+        model.addAttribute("resultPPM", resultPPM);
+        model.addAttribute("resultCPM", resultCPM);
+        model.addAttribute("resultEndCPM", resultEndCPM);
     }
 }
 

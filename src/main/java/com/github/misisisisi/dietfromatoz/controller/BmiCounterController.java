@@ -18,6 +18,7 @@ import javax.validation.Valid;
 public class BmiCounterController {
 
     private final BmiService bmiService;
+    double resultBMI;
 
     @GetMapping
     public String prepareView(Model model) {
@@ -30,10 +31,16 @@ public class BmiCounterController {
         if (result.hasErrors()) {
             return "/personData/count_BMI";
         } else {
-            double resultBMI = bmiService.countBMI(bmiCalcForm.getBodyWeight(), bmiCalcForm.getBodyHeight());
+            resultBMI = bmiService.countBMI(bmiCalcForm.getBodyWeight(), bmiCalcForm.getBodyHeight());
            //do poprawy wrzucenie wyniku BMI do widoku
+            resultBMI = Math.round(resultBMI);
             System.out.print(resultBMI);
             return "/personData/resultBMI";
         }
+    }
+
+    @ModelAttribute
+    public void addAttributes(Model model){
+        model.addAttribute("bmi", resultBMI);
     }
 }

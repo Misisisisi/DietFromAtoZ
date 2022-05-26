@@ -35,17 +35,17 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Twoje całkowite zapotrzebowanie wynosi:</h1>
-                                    <p> DYNAMICZNIE CPM kcal </p>
+                                    <p> ${resultCPM} kcal </p>
                                 </div>
 
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Twoje minimalne zapotrzebowanie wynosi:</h1>
-                                    <p> DYNAMICZNIE PPM kcal</p>
+                                    <p>${resultPPM} kcal</p>
                                 </div>
 
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Aby osiągnąć cel powinieneś spożywać:</h1>
-                                    <p> DYNAMICZNIE endCPM kcal</p>
+                                    <p> ${resultEndCPM} kcal</p>
                                 </div>
 
                                 <div class="form-group">
@@ -55,7 +55,7 @@
                                             <a class="small" href="/count_BMI">Oblicz swoje BMI</a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="small" href="plan_diet.jsp">Zaplanuj posiłki!</a>
+                                            <a class="small" href="/planMeals">Zaplanuj posiłki!</a>
 
                                         </div>
                                     </div>

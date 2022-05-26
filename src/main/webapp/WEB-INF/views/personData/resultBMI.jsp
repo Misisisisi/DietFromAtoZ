@@ -35,7 +35,7 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Twój wskaźnik BMI wynosi:</h1>
-                                    <p>DYNAMICZNY WSKAŹNIK BMI</p>
+                                    <p>${bmi}</p>
                                 </div>
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Wartości referencyjne BMI:</h1>
@@ -52,7 +52,7 @@
                                     <a class="small" href="/create_personData">Oblicz swoje zapotrzebowanie</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="plan_diet.jsp">Zaplanuj posiłki!</a>
+                                    <a class="small" href="/planMeals">Zaplanuj posiłki!</a>
 
                                 </div>
                             </div>
