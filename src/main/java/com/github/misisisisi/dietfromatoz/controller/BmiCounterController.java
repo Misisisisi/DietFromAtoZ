@@ -32,7 +32,7 @@ public class BmiCounterController {
             return "/personData/count_BMI";
         } else {
             resultBMI = bmiService.countBMI(bmiCalcForm.getBodyWeight(), bmiCalcForm.getBodyHeight());
-           //do poprawy wrzucenie wyniku BMI do widoku
+           //do poprawy wynik BMI -> w pierwszym widoku wyswietla się 0
             resultBMI = Math.round(resultBMI);
             System.out.print(resultBMI);
             return "/personData/resultBMI";
