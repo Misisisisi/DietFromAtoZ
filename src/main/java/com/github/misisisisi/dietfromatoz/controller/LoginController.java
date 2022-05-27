@@ -20,6 +20,7 @@ public class LoginController {
 
     private final UserService userService;
 
+
     public String login(Model model){
         model.addAttribute("createUserForm", new CreateUserForm());
         return "userInterface/login";
@@ -28,6 +29,7 @@ public class LoginController {
     public String processLogin(@ModelAttribute("createUserForm") @Valid CreateUserForm createUserForm, BindingResult result) {
         if (result.hasErrors()) {
             return "userInterface/login";
+
         } else {
             userService.saveUser(createUserForm);
             return "dashboard/homePage";
