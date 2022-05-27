@@ -81,7 +81,7 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="theme/charts.html">
+            <a class="nav-link" href="/planMeals">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Zaplanuj posiłki</span></a>
         </li>
@@ -453,16 +453,16 @@
                                         <th>Ilość tłuszczu</th>
                                     </tr>
                                     </thead>
-<%--                                    <tfoot>--%>
-<%--                                    <tr>--%>
-<%--                                        <th>Name</th>--%>
-<%--                                        <th>Position</th>--%>
-<%--                                        <th>Office</th>--%>
-<%--                                        <th>Age</th>--%>
-<%--                                        <th>Start date</th>--%>
-<%--                                        <th>Salary</th>--%>
-<%--                                    </tr>--%>
-<%--                                    </tfoot>--%>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Śniadanie</th>
+                                        <th>Razem</th>
+                                        <th>Dynamicznie ilosć kalorii razem</th>
+                                        <th>Dynamicznie ilosć białka razem</th>
+                                        <th>Dynamicznie ilosć wegli razem</th>
+                                        <th>Dynamicznie ilosć tłuszczu razem</th>
+                                    </tr>
+                                    </tfoot>
                                     <tbody>
                                     <tr>
                                         <td>Składnik -dynamicznie</td>
