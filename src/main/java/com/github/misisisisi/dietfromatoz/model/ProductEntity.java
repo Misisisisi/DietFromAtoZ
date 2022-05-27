@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table (name="products")
@@ -17,15 +18,15 @@ public class ProductEntity {
     private Long id;
     @NotBlank
     private String productName;
-    @NotBlank
+    @NotNull
     private double energyValue;
-    @NotBlank
+    @NotNull
     private double protein;
-    @NotBlank
+    @NotNull
     private double carbohydrates;
-    @NotBlank
+    @NotNull
     private double fats;
-    @NotBlank
+    @NotNull
     private double weight;
     @ManyToOne
     private UserEntity owner;
