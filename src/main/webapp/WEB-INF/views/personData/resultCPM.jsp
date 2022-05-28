@@ -35,17 +35,17 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Twoje całkowite zapotrzebowanie wynosi:</h1>
-                                    <p> ${resultCPM} kcal </p>
+                                    <p> ${result.resultCPM} kcal </p>
                                 </div>
 
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Twoje minimalne zapotrzebowanie wynosi:</h1>
-                                    <p>${resultPPM} kcal</p>
+                                    <p>${result.resultPPM} kcal</p>
                                 </div>
 
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Aby osiągnąć cel powinieneś spożywać:</h1>
-                                    <p> ${resultEndCPM} kcal</p>
+                                    <p> ${result.resultEndCPM} kcal</p>
                                 </div>
 
                                 <div class="form-group">
