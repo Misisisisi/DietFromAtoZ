@@ -35,13 +35,13 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Twój wskaźnik BMI wynosi:</h1>
-                                    <p>${bmi}</p>
+                                    <p>${resultBMI.resultBMI}</p>
                                 </div>
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Wartości referencyjne BMI:</h1>
                                     <p>poniżej 18,5 -> niedowaga</p>
                                     <p>18,5 - 24,9 -> prawidłowa masa ciała </p>
-                                    <p>25-29,9 -> nawaga</p>
+                                    <p>25-29,9 -> nadwaga</p>
                                     <p>30-34,9 -> otyłość I stopnia </p>
                                     <p>35-39,9 -> otyłość II stopnia </p>
                                     <p>powyżej 40 -> otyłość III stopnia </p>

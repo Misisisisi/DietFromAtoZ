@@ -1,5 +1,6 @@
 package com.github.misisisisi.dietfromatoz.controller;
 
+import com.github.misisisisi.dietfromatoz.model.ResultBMI;
 import com.github.misisisisi.dietfromatoz.service.BmiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,6 @@ import javax.validation.Valid;
 public class BmiCounterController {
 
     private final BmiService bmiService;
-    double resultBMI;
 
     @GetMapping
     public String prepareView(Model model) {
@@ -27,20 +27,14 @@ public class BmiCounterController {
     }
 
     @PostMapping
-    public String processView(@ModelAttribute("bmiCalcForm") @Valid BmiCalcForm bmiCalcForm, BindingResult result) {
+    public String processView(@ModelAttribute("bmiCalcForm") @Valid BmiCalcForm bmiCalcForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "/personData/count_BMI";
         } else {
-            resultBMI = bmiService.countBMI(bmiCalcForm.getBodyWeight(), bmiCalcForm.getBodyHeight());
-           //do poprawy wynik BMI -> w pierwszym widoku wyswietla się 0
+            double resultBMI = bmiService.countBMI(bmiCalcForm.getBodyWeight(), bmiCalcForm.getBodyHeight());
             resultBMI = Math.round(resultBMI);
-            System.out.print(resultBMI);
+            model.addAttribute("resultBMI", new ResultBMI(resultBMI));
             return "/personData/resultBMI";
         }
-    }
-
-    @ModelAttribute
-    public void addAttributes(Model model){
-        model.addAttribute("bmi", resultBMI);
     }
 }
