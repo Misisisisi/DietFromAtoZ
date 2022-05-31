@@ -40,9 +40,16 @@ public class PlanMealsController {
             double carbohydrates = productByName.getCarbohydrates() * (planMealsForm.getWeight() / productByName.getWeight());
             double fats = productByName.getFats() * (planMealsForm.getWeight() / productByName.getWeight());
             double energyValue = productByName.getEnergyValue() * (planMealsForm.getWeight() / productByName.getWeight());
-            ProductOfMeal addingProduct = new ProductOfMeal(productByName.getProductName(), energyValue, protein, carbohydrates, fats, planMealsForm.getWeight());
+
+            double roundProtein = Math.round(protein);
+            double roundCarbohydrates = Math.round(carbohydrates);
+            double roundFats = Math.round(fats);
+            double roundEnergyValue = Math.round(energyValue);
+
+            ProductOfMeal addingProduct = new ProductOfMeal(productByName.getProductName(), roundEnergyValue, roundProtein, roundCarbohydrates, roundFats, planMealsForm.getWeight());
             planMealsForm.getProductOfMealList().add(addingProduct);
             System.out.println(energyValue);
+            model.addAllAttributes(planMealsForm.getProductOfMealList());
 //            model.addAttribute("planMealsForm", planMealsForm.getProductOfMealList());
             return "/meals/planMeals";
         }
