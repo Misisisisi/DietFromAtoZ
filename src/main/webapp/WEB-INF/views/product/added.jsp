@@ -128,9 +128,9 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="theme/charts.html">
+            <a class="nav-link" href="/addProduct">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Lista zakupów</span></a>
+                <span>Dodaj produkt do bazy</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
