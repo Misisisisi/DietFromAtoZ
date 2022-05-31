@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -29,7 +26,7 @@ public class PlanMealsController {
     }
 
     @PostMapping(params = "addProductToFirstMeal")
-    public String addProductToMeal(@ModelAttribute("planMealsForm") @Valid PlanMealsForm planMealsForm, BindingResult result, Model model) {
+    public String addProductToFirstMeal(@ModelAttribute("planMealsForm") @Valid PlanMealsForm planMealsForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "/meals/planMeals";
         } else {
@@ -53,5 +50,11 @@ public class PlanMealsController {
 //            model.addAttribute("planMealsForm", planMealsForm.getProductOfMealList());
             return "/meals/planMeals";
         }
+    }
+
+    @PostMapping(params = "removeProductFromFirstMeal")
+    public String removeProductFromFirstMeal(@ModelAttribute PlanMealsForm planMealsForm, @RequestParam int removeProduct) {
+        planMealsForm.getProductOfMealList().remove(removeProduct);
+        return "/meals/planMeals";
     }
 }

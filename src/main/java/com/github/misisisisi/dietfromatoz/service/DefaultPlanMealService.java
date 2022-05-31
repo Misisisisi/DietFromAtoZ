@@ -16,5 +16,6 @@ public class DefaultPlanMealService implements PlanMealService{
     public ProductEntity loadProductByName(String productName) {
         return planMealRepository.findByProductName(productName);
     }
+
 }
 
