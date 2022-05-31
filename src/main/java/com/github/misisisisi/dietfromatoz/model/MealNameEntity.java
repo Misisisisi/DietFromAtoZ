@@ -17,7 +17,7 @@ public class MealNameEntity {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
     @NotBlank
-    private String mealName;
+    private String name;
     @OneToMany
     private List<ProductEntity> listOfProducts = new ArrayList<>();
 

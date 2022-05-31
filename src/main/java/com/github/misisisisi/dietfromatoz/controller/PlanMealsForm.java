@@ -1,8 +1,12 @@
 package com.github.misisisisi.dietfromatoz.controller;
 
+import com.github.misisisisi.dietfromatoz.model.ProductOfMeal;
 import lombok.*;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,6 +16,10 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor @Builder
 public class PlanMealsForm {
 
-    @NotNull
+    @NotBlank
     private String productName;
+    @Positive
+    private double weight;
+    @Builder.Default
+    private List<ProductOfMeal> productOfMealList = new ArrayList<>();
 }
