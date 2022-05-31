@@ -40,7 +40,7 @@ public class PlanMealsController {
             double carbohydrates = productByName.getCarbohydrates() * (planMealsForm.getWeight() / productByName.getWeight());
             double fats = productByName.getFats() * (planMealsForm.getWeight() / productByName.getWeight());
             double energyValue = productByName.getEnergyValue() * (planMealsForm.getWeight() / productByName.getWeight());
-            ProductOfMeal addingProduct = new ProductOfMeal(productByName.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight());
+            ProductOfMeal addingProduct = new ProductOfMeal(productByName.getProductName(), energyValue, protein, carbohydrates, fats, planMealsForm.getWeight());
             planMealsForm.getProductOfMealList().add(addingProduct);
             System.out.println(energyValue);
 //            model.addAttribute("planMealsForm", planMealsForm.getProductOfMealList());
