@@ -303,7 +303,12 @@
                                         <td><c:out value="${productOfMeal.protein}"/></td>
                                         <td><c:out value="${productOfMeal.carbohydrates}"/></td>
                                         <td><c:out value="${productOfMeal.fats}"/></td>
+
+                                       <td> <spring:form action="/planMeals" modelAttribute="planMealsForm" method="post">
+                                            <spring:button name="removeProducFromFirstMeal">Usuń</spring:button>
+                                       </spring:form> </td>
                                     </c:forEach>
+
                                 </tr>
 
                                 </tbody>
