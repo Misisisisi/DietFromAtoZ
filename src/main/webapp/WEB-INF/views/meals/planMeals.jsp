@@ -41,7 +41,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="theme/index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -167,17 +167,17 @@
                 </button>
 
                 <!-- Topbar Search -->
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                               aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+<%--                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">--%>
+<%--                    <div class="input-group">--%>
+<%--                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."--%>
+<%--                               aria-label="Search" aria-describedby="basic-addon2">--%>
+<%--                        <div class="input-group-append">--%>
+<%--                            <button class="btn btn-primary" type="button">--%>
+<%--                                <i class="fas fa-search fa-sm"></i>--%>
+<%--                            </button>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </form>--%>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -313,15 +313,16 @@
                                     </div>
                                     </spring:form>
                                 </tr>
+                                <c:forEach items="${allByDayNameAndMealName}" var="productOfMeal"
+                                                varStatus="status">
                                 <tr>
-                                    <c:forEach items="${allByDayNameAndMealName}" var="productOfMeal"
-                                               varStatus="status">
+
                                         <td>${productOfMeal.productName}</td>
-<%--                                        <td><c:out value="${productOfMeal.weight}"/></td>--%>
-<%--                                        <td><c:out value="${productOfMeal.energyValue}"/></td>--%>
-<%--                                        <td><c:out value="${productOfMeal.protein}"/></td>--%>
-<%--                                        <td><c:out value="${productOfMeal.carbohydrates}"/></td>--%>
-<%--                                        <td><c:out value="${productOfMeal.fats}"/></td>--%>
+                                        <td>${productOfMeal.weight}</td>
+                                        <td>${productOfMeal.energyValue}</td>
+                                        <td>${productOfMeal.protein}</td>
+                                        <td>${productOfMeal.carbohydrates}</td>
+                                        <td><${productOfMeal.fats}</td>
 
                                         <td><spring:form action="/planMeals" modelAttribute="planMealsForm"
                                                          method="post">
