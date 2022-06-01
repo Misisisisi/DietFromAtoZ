@@ -23,11 +23,12 @@ public class AddProductToMealService {
                 .protein(productsOfMeal.getProtein())
                 .carbohydrates(productsOfMeal.getCarbohydrates())
                 .fats(productsOfMeal.getFats())
+                .mealName(productsOfMeal.getMealName())
+                .dayName(productsOfMeal.getDayName())
 //                .owner(createProductForm.getUser())
                 .build());
 
     }
-
 
 
 }

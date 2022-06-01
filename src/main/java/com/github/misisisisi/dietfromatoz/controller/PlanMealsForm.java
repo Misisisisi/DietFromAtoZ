@@ -26,7 +26,7 @@ public class PlanMealsForm {
     @Builder.Default
     private List<ProductOfMealEntity> productOfMealList = new ArrayList<>();
     @NotBlank
-    private DayNameEntity dayName;
+    private String dayName;
     @NotBlank
-    private MealNameEntity mealName;
+    private String mealName;
 }

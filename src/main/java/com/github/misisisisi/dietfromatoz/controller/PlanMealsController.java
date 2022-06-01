@@ -1,9 +1,9 @@
 package com.github.misisisisi.dietfromatoz.controller;
 
-import com.github.misisisisi.dietfromatoz.model.ProductEntity;
-import com.github.misisisisi.dietfromatoz.model.ProductOfMealEntity;
-import com.github.misisisisi.dietfromatoz.model.ProductsOfMeal;
+import com.github.misisisisi.dietfromatoz.model.*;
 import com.github.misisisisi.dietfromatoz.repository.AddProductToMealRepository;
+import com.github.misisisisi.dietfromatoz.repository.DayNameRepository;
+import com.github.misisisisi.dietfromatoz.repository.MealNameRepository;
 import com.github.misisisisi.dietfromatoz.service.AddProductToMealService;
 import com.github.misisisisi.dietfromatoz.service.DefaultPlanMealService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -22,6 +23,9 @@ public class PlanMealsController {
 
     private final DefaultPlanMealService planMealService;
     private final AddProductToMealService addProductToMealService;
+    private final DayNameRepository dayNameRepository;
+    private final MealNameRepository mealNameRepository;
+    private final AddProductToMealRepository addProductToMealRepository;
 
     @GetMapping
     public String prepareView(Model model) {
@@ -34,8 +38,10 @@ public class PlanMealsController {
         if (result.hasErrors()) {
             return "/meals/planMeals";
         } else {
-            System.out.println(planMealsForm.getProductName());
-            System.out.println(planMealsForm.getWeight());
+//            System.out.println(planMealsForm.getProductName());
+//            System.out.println(planMealsForm.getWeight());
+            DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
+            MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName(planMealsForm.getMealName());
             ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
             double protein = productByName.getProtein() * (planMealsForm.getWeight() / productByName.getWeight());
             double carbohydrates = productByName.getCarbohydrates() * (planMealsForm.getWeight() / productByName.getWeight());
@@ -46,15 +52,25 @@ public class PlanMealsController {
             carbohydrates = Math.round(carbohydrates);
             fats = Math.round(fats);
             energyValue = Math.round(energyValue);
-            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight());
+            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName);
 //            planMealsForm.getProductOfMealList().add(productOfMeal);
-            System.out.println(energyValue);
+//            System.out.println(energyValue);
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
 
-//            model.addAttribute("productOfMeal", );
+            model.addAttribute("dayName", dayName);
+            model.addAttribute("mealName", mealName);
 //            model.addAttribute("planMealsForm", planMealsForm.getProductOfMealList());
             return "/meals/planMeals";
         }
+    }
+
+    @PostMapping
+    public String showProducts(Model model){
+        String dayName =(String) model.getAttribute("dayName");
+        String mealName = (String)model.getAttribute("mealName");
+        List<ProductOfMealEntity> allByDayNameAndMealName = addProductToMealRepository.findALLByDayNameAndMealName(dayName, mealName);
+        model.addAttribute("allByDayNameAndMealName", allByDayNameAndMealName);
+        return "/meals/planMeals";
     }
 
 //    @PostMapping(params = "removeProductFromFirstMeal")

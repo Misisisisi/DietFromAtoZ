@@ -314,7 +314,7 @@
                                     </spring:form>
                                 </tr>
                                 <tr>
-                                    <c:forEach items="${planMealsForm.productOfMealList}" var="productOfMeal"
+                                    <c:forEach items="${allByDayNameAndMealName}" var="productOfMeal"
                                                varStatus="status">
                                         <td><c:out value="${productOfMeal.productName}"/></td>
                                         <td><c:out value="${productOfMeal.weight}"/></td>

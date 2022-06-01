@@ -1,8 +1,10 @@
 package com.github.misisisisi.dietfromatoz.service;
 
 import com.github.misisisisi.dietfromatoz.model.DayNameEntity;
+import com.github.misisisisi.dietfromatoz.model.MealNameEntity;
 import com.github.misisisisi.dietfromatoz.model.ProductEntity;
 import com.github.misisisisi.dietfromatoz.repository.DayNameRepository;
+import com.github.misisisisi.dietfromatoz.repository.MealNameRepository;
 import com.github.misisisisi.dietfromatoz.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,7 @@ public class TestDataLoader {
 
     private final ProductRepository productRepository;
     private final DayNameRepository dayNameRepository;
+    private final MealNameRepository mealNameRepository;
 
     @EventListener
     public void loadData(ContextRefreshedEvent event) {
@@ -255,6 +258,39 @@ public class TestDataLoader {
                 .build());
         dayNameRepository.save(DayNameEntity.builder()
                 .dayName("Środa")
+                .build());
+        dayNameRepository.save(DayNameEntity.builder()
+                .dayName("Czwartek")
+                .build());
+        dayNameRepository.save(DayNameEntity.builder()
+                .dayName("Piątek")
+                .build());
+        dayNameRepository.save(DayNameEntity.builder()
+                .dayName("Sobota")
+                .build());
+        dayNameRepository.save(DayNameEntity.builder()
+                .dayName("Niedziela")
+                .build());
+        mealNameRepository.save(MealNameEntity.builder()
+                .mealName("Śniadanie")
+                .build());
+        mealNameRepository.save(MealNameEntity.builder()
+                .mealName("II śniadanie")
+                .build());
+        mealNameRepository.save(MealNameEntity.builder()
+                .mealName("Lunch")
+                .build());
+        mealNameRepository.save(MealNameEntity.builder()
+                .mealName("Obiad")
+                .build());
+        mealNameRepository.save(MealNameEntity.builder()
+                .mealName("Podwieczorek")
+                .build());
+        mealNameRepository.save(MealNameEntity.builder()
+                .mealName("Kolacja")
+                .build());
+        mealNameRepository.save(MealNameEntity.builder()
+                .mealName("II kolacja")
                 .build());
 
     }

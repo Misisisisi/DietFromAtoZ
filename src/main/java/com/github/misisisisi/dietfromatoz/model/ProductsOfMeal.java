@@ -16,5 +16,7 @@ public class ProductsOfMeal {
     double fats;
     double energyValue;
     double weight;
+    DayNameEntity dayName;
+    MealNameEntity mealName;
 
     }
