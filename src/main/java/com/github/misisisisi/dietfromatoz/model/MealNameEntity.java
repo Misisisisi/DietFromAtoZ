@@ -19,8 +19,7 @@ public class MealNameEntity {
     @NotBlank
     private String name;
     @OneToMany
-    private List<ProductEntity> listOfProducts = new ArrayList<>();
-
+    private List<ProductOfMealEntity> listOfProducts = new ArrayList<>();
     @ManyToOne
     private UserEntity owner;
 

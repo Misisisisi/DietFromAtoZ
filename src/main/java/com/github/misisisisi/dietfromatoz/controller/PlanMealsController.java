@@ -1,7 +1,10 @@
 package com.github.misisisisi.dietfromatoz.controller;
 
 import com.github.misisisisi.dietfromatoz.model.ProductEntity;
-import com.github.misisisisi.dietfromatoz.model.ProductOfMeal;
+import com.github.misisisisi.dietfromatoz.model.ProductOfMealEntity;
+import com.github.misisisisi.dietfromatoz.model.ProductsOfMeal;
+import com.github.misisisisi.dietfromatoz.repository.AddProductToMealRepository;
+import com.github.misisisisi.dietfromatoz.service.AddProductToMealService;
 import com.github.misisisisi.dietfromatoz.service.DefaultPlanMealService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import javax.validation.Valid;
 public class PlanMealsController {
 
     private final DefaultPlanMealService planMealService;
+    private final AddProductToMealService addProductToMealService;
 
     @GetMapping
     public String prepareView(Model model) {
@@ -38,23 +42,24 @@ public class PlanMealsController {
             double fats = productByName.getFats() * (planMealsForm.getWeight() / productByName.getWeight());
             double energyValue = productByName.getEnergyValue() * (planMealsForm.getWeight() / productByName.getWeight());
 
-            double roundProtein = Math.round(protein);
-            double roundCarbohydrates = Math.round(carbohydrates);
-            double roundFats = Math.round(fats);
-            double roundEnergyValue = Math.round(energyValue);
-
-            ProductOfMeal addingProduct = new ProductOfMeal(productByName.getProductName(), roundEnergyValue, roundProtein, roundCarbohydrates, roundFats, planMealsForm.getWeight());
-            planMealsForm.getProductOfMealList().add(addingProduct);
+            protein = Math.round(protein);
+            carbohydrates = Math.round(carbohydrates);
+            fats = Math.round(fats);
+            energyValue = Math.round(energyValue);
+            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight());
+//            planMealsForm.getProductOfMealList().add(productOfMeal);
             System.out.println(energyValue);
-            model.addAllAttributes(planMealsForm.getProductOfMealList());
+            addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
+
+//            model.addAttribute("productOfMeal", );
 //            model.addAttribute("planMealsForm", planMealsForm.getProductOfMealList());
             return "/meals/planMeals";
         }
     }
 
-    @PostMapping(params = "removeProductFromFirstMeal")
-    public String removeProductFromFirstMeal(@ModelAttribute PlanMealsForm planMealsForm, @RequestParam int removeProduct) {
-        planMealsForm.getProductOfMealList().remove(removeProduct);
-        return "/meals/planMeals";
-    }
+//    @PostMapping(params = "removeProductFromFirstMeal")
+//    public String removeProductFromFirstMeal(@ModelAttribute PlanMealsForm planMealsForm, @RequestParam int removeProduct) {
+//        planMealsForm.getProductOfMealList().remove(removeProduct);
+//        return "/meals/planMeals";
+//    }
 }

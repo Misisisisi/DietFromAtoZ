@@ -1,6 +1,6 @@
 package com.github.misisisisi.dietfromatoz.controller;
 
-import com.github.misisisisi.dietfromatoz.model.ProductOfMeal;
+import com.github.misisisisi.dietfromatoz.model.ProductOfMealEntity;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -21,5 +21,5 @@ public class PlanMealsForm {
     @Positive
     private double weight;
     @Builder.Default
-    private List<ProductOfMeal> productOfMealList = new ArrayList<>();
+    private List<ProductOfMealEntity> productOfMealList = new ArrayList<>();
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="meals")
+@Table(name="days")
 @Getter @Setter @ToString @EqualsAndHashCode(of = "id")
 @NoArgsConstructor @AllArgsConstructor @Builder
 public class DayNameEntity {
