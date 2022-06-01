@@ -289,7 +289,7 @@
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Śniadanie</th>
+                                    <th></th>
                                     <th>Razem</th>
                                     <th>Dynamicznie ilosć kalorii razem</th>
                                     <th>Dynamicznie ilosć białka razem</th>
@@ -316,12 +316,12 @@
                                 <tr>
                                     <c:forEach items="${allByDayNameAndMealName}" var="productOfMeal"
                                                varStatus="status">
-                                        <td><c:out value="${productOfMeal.productName}"/></td>
-                                        <td><c:out value="${productOfMeal.weight}"/></td>
-                                        <td><c:out value="${productOfMeal.energyValue}"/></td>
-                                        <td><c:out value="${productOfMeal.protein}"/></td>
-                                        <td><c:out value="${productOfMeal.carbohydrates}"/></td>
-                                        <td><c:out value="${productOfMeal.fats}"/></td>
+                                        <td>${productOfMeal.productName}</td>
+<%--                                        <td><c:out value="${productOfMeal.weight}"/></td>--%>
+<%--                                        <td><c:out value="${productOfMeal.energyValue}"/></td>--%>
+<%--                                        <td><c:out value="${productOfMeal.protein}"/></td>--%>
+<%--                                        <td><c:out value="${productOfMeal.carbohydrates}"/></td>--%>
+<%--                                        <td><c:out value="${productOfMeal.fats}"/></td>--%>
 
                                         <td><spring:form action="/planMeals" modelAttribute="planMealsForm"
                                                          method="post">

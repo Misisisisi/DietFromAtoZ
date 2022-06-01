@@ -18,8 +18,8 @@ public class DayNameEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
-    @DateTimeFormat
-    private LocalDate date;
+//    @DateTimeFormat
+//    private LocalDate date;
     @NotBlank
     private String dayName;
     @ManyToMany

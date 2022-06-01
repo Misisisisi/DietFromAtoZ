@@ -30,6 +30,10 @@ public class PlanMealsController {
     @GetMapping
     public String prepareView(Model model) {
         model.addAttribute("planMealsForm", new PlanMealsForm());
+        String dayName =(String) model.getAttribute("dayName");
+        String mealName = (String)model.getAttribute("mealName");
+        List<ProductOfMealEntity> allByDayNameAndMealName = addProductToMealRepository.findAllByDayNameAndMealName(dayName, mealName);
+        model.addAttribute("allByDayNameAndMealName", allByDayNameAndMealName);
         return "/meals/planMeals";
     }
 
@@ -64,18 +68,13 @@ public class PlanMealsController {
         }
     }
 
-    @PostMapping
-    public String showProducts(Model model){
-        String dayName =(String) model.getAttribute("dayName");
-        String mealName = (String)model.getAttribute("mealName");
-        List<ProductOfMealEntity> allByDayNameAndMealName = addProductToMealRepository.findALLByDayNameAndMealName(dayName, mealName);
-        model.addAttribute("allByDayNameAndMealName", allByDayNameAndMealName);
-        return "/meals/planMeals";
-    }
 
 //    @PostMapping(params = "removeProductFromFirstMeal")
 //    public String removeProductFromFirstMeal(@ModelAttribute PlanMealsForm planMealsForm, @RequestParam int removeProduct) {
 //        planMealsForm.getProductOfMealList().remove(removeProduct);
 //        return "/meals/planMeals";
 //    }
+
+
+
 }
