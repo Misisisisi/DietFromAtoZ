@@ -1,6 +1,8 @@
 package com.github.misisisisi.dietfromatoz.service;
 
+import com.github.misisisisi.dietfromatoz.model.DayNameEntity;
 import com.github.misisisisi.dietfromatoz.model.ProductEntity;
+import com.github.misisisisi.dietfromatoz.repository.DayNameRepository;
 import com.github.misisisisi.dietfromatoz.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Component;
 public class TestDataLoader {
 
     private final ProductRepository productRepository;
+    private final DayNameRepository dayNameRepository;
 
     @EventListener
     public void loadData(ContextRefreshedEvent event) {
@@ -60,7 +63,7 @@ public class TestDataLoader {
                 .energyValue(716)
                 .weight(100)
                 .build());
-  productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("szynka")
                 .carbohydrates(1.5)
                 .protein(21)
@@ -68,7 +71,7 @@ public class TestDataLoader {
                 .energyValue(145)
                 .weight(100)
                 .build());
-  productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("awokado")
                 .carbohydrates(9)
                 .protein(2)
@@ -76,7 +79,7 @@ public class TestDataLoader {
                 .energyValue(160)
                 .weight(100)
                 .build());
- productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("ziemniaki")
                 .carbohydrates(17)
                 .protein(2)
@@ -84,7 +87,7 @@ public class TestDataLoader {
                 .energyValue(76)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("mleko")
                 .carbohydrates(5)
                 .protein(3.4)
@@ -92,7 +95,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(42)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("ser żółty")
                 .carbohydrates(1.3)
                 .protein(25)
@@ -100,7 +103,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(402)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("ser biały")
                 .carbohydrates(3.4)
                 .protein(11)
@@ -108,7 +111,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(98)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("makaron")
                 .carbohydrates(25)
                 .protein(5)
@@ -116,7 +119,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(131)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("pomidor")
                 .carbohydrates(3.9)
                 .protein(0.9)
@@ -124,7 +127,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(17)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("ogórek")
                 .carbohydrates(3.6)
                 .protein(0.7)
@@ -132,7 +135,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(15)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("mięso")
                 .carbohydrates(0)
                 .protein(26)
@@ -140,7 +143,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(143)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("tofu")
                 .carbohydrates(1.9)
                 .protein(8)
@@ -148,7 +151,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(76)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("soczewica")
                 .carbohydrates(20)
                 .protein(9)
@@ -156,7 +159,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(116)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("ciecierzyca")
                 .carbohydrates(61)
                 .protein(19)
@@ -164,7 +167,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(364)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("sałata")
                 .carbohydrates(2.9)
                 .protein(1.4)
@@ -172,7 +175,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(14)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("skyr")
                 .carbohydrates(4.1)
                 .protein(12)
@@ -180,7 +183,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(64)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("majonez")
                 .carbohydrates(0.6)
                 .protein(1)
@@ -188,7 +191,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(679)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("ketchup")
                 .carbohydrates(26)
                 .protein(1.3)
@@ -196,7 +199,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(111)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("orzechy")
                 .carbohydrates(21)
                 .protein(20)
@@ -204,7 +207,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(606)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("płatki owsiane")
                 .carbohydrates(12)
                 .protein(2.4)
@@ -212,7 +215,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(67)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("masło")
                 .carbohydrates(0.1)
                 .protein(0.9)
@@ -220,7 +223,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(716)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("borówki")
                 .carbohydrates(14)
                 .protein(0.7)
@@ -228,7 +231,7 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(57)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("oliwa z oliwek")
                 .carbohydrates(0)
                 .protein(0)
@@ -236,13 +239,22 @@ productRepository.save(ProductEntity.builder()
                 .energyValue(884)
                 .weight(100)
                 .build());
-productRepository.save(ProductEntity.builder()
+        productRepository.save(ProductEntity.builder()
                 .productName("olej rzepakowy")
                 .carbohydrates(0)
                 .protein(0)
                 .fats(100)
                 .energyValue(884)
                 .weight(100)
+                .build());
+        dayNameRepository.save(DayNameEntity.builder()
+                .dayName("Poniedziałek")
+                .build());
+        dayNameRepository.save(DayNameEntity.builder()
+                .dayName("Wtorek")
+                .build());
+        dayNameRepository.save(DayNameEntity.builder()
+                .dayName("Środa")
                 .build());
 
     }

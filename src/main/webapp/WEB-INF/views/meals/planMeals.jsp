@@ -249,11 +249,30 @@
 
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Zaplanuj posiłki</h1>
-
+                <spring:form action="/planMeals" modelAttribute="planMealsForm" method="post">
+                <spring:select path="dayName">
+                    <spring:option value="Poniedziałek"></spring:option>
+                    <spring:option value="Wtorek"></spring:option>
+                    <spring:option value="Środa"></spring:option>
+                    <spring:option value="Czwartek"></spring:option>
+                    <spring:option value="Piątek"></spring:option>
+                    <spring:option value="Sobota"></spring:option>
+                    <spring:option value="Niedziela"></spring:option>
+                </spring:select>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Śniadanie</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            <spring:select path="mealName">
+                                <spring:option value="Śniadanie"></spring:option>
+                                <spring:option value="II śniadanie"></spring:option>
+                                <spring:option value="Lunch"></spring:option>
+                                <spring:option value="Obiad"></spring:option>
+                                <spring:option value="Podwieczorek"></spring:option>
+                                <spring:option value="Kolacja"></spring:option>
+                                <spring:option value="II kolacja"></spring:option>
+
+                            </spring:select></h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -280,18 +299,18 @@
                                 </tfoot>
                                 <tbody>
                                 <tr>
-                                    <spring:form action="/planMeals" modelAttribute="planMealsForm" method="post">
-                                        <div class="input-group">
-                                            <spring:input path="productName" type="text"
-                                                   class="form-control bg-light border-10 small"
-                                                   placeholder="Dodaj produkt..."/>
-                                            <spring:input path="weight" type="number"
-                                                   class="form-control bg-light border-10 small"
-                                                   placeholder="Podaj gramaturę"/>
-                                            <div class="input-group-append">
-                                                <spring:button name="addProductToFirstMeal">Dodaj</spring:button>
-                                            </div>
+
+                                    <div class="input-group">
+                                        <spring:input path="productName" type="text"
+                                                      class="form-control bg-light border-10 small"
+                                                      placeholder="Dodaj produkt..."/>
+                                        <spring:input path="weight" type="number"
+                                                      class="form-control bg-light border-10 small"
+                                                      placeholder="Podaj gramaturę"/>
+                                        <div class="input-group-append">
+                                            <spring:button name="addProductToFirstMeal">Dodaj</spring:button>
                                         </div>
+                                    </div>
                                     </spring:form>
                                 </tr>
                                 <tr>
@@ -304,9 +323,11 @@
                                         <td><c:out value="${productOfMeal.carbohydrates}"/></td>
                                         <td><c:out value="${productOfMeal.fats}"/></td>
 
-                                       <td> <spring:form action="/planMeals" modelAttribute="planMealsForm" method="post">
-                                            <spring:button name="removeProductFromFirstMeal" value="${status.index}">Usuń</spring:button>
-                                       </spring:form> </td>
+                                        <td><spring:form action="/planMeals" modelAttribute="planMealsForm"
+                                                         method="post">
+                                            <spring:button name="removeProductFromFirstMeal"
+                                                           value="${status.index}">Usuń</spring:button>
+                                        </spring:form></td>
                                     </c:forEach>
 
                                 </tr>
