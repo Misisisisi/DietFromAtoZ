@@ -38,18 +38,21 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Cześć! Zarejestruj się!</h1>
                                 </div>
-                                <spring:form action="/login" modelAttribute="userDetails" method="get">
+                                <spring:form action="/register" modelAttribute="userDetails" method="post">
                                     <div class="form-group">
-                                        <spring:input type="text" class="form-control form-control-user" id="exampleInputPassword" placeholder="Imię" path="firstName"/>
+                                        <spring:input class="form-control form-control-user"  placeholder="Imię" path="firstName"/>
                                     </div>
                                     <div class="form-group">
-                                        <spring:input type="text" class="form-control form-control-user" id="exampleInputPassword" placeholder="Nazwisko" path="lastName"/>
+                                        <spring:input class="form-control form-control-user"  placeholder="Nazwisko" path="lastName"/>
                                     </div>
                                     <div class="form-group">
-                                        <spring:input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" path="email"/>
+                                        <spring:input class="form-control form-control-user"  placeholder="Login" path="username"/>
                                     </div>
                                     <div class="form-group">
-                                        <spring:input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Hasło" path="password"/>
+                                        <spring:input type="email" class="form-control form-control-user" placeholder="Email" path="email"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <spring:input type="password" class="form-control form-control-user" placeholder="Hasło" path="password"/>
                                     </div>
                                     <div class="form-group">
                                             <%--                                        <div class="custom-control custom-checkbox small">--%>
@@ -57,9 +60,8 @@
                                             <%--                                            <label class="custom-control-label" for="customCheck">Remember Me</label>--%>
                                             <%--                                        </div>--%>
                                     </div>
-                                    <a href="/home" class="btn btn-primary btn-user btn-block">
-                                        Rejestracja
-                                    </a>
+                                    <spring:button class="btn btn-primary btn-user btn-block">Rejestracja</spring:button>
+
                                     <%--                                    <hr>--%>
                                     <%--                                    <a href="index.html" class="btn btn-google btn-user btn-block">--%>
                                     <%--                                        <i class="fab fa-google fa-fw"></i> Login with Google--%>

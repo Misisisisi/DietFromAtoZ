@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -27,21 +28,43 @@ public class PlanMealsController {
     private final MealNameRepository mealNameRepository;
     private final AddProductToMealRepository addProductToMealRepository;
 
+
+    @GetMapping("/{dayName}")
+    public String prepareView(@PathVariable("dayName") String dayName, Model model) {
+        DayNameEntity dayNameEntity = new DayNameEntity(dayName);
+        model.addAttribute("nameOfDay", dayNameEntity);
+        model.addAttribute("planMealsForm", new PlanMealsForm());
+        List<ProductOfMealEntity> allByDayNameAndMealName = addProductToMealRepository.findAllBreakfastFromDay(dayName);
+        model.addAttribute("allByDayNameAndMealName", allByDayNameAndMealName);
+        System.out.println(dayName);
+        return "/meals/planMeals";
+    }
+
+
+    @PostMapping(value = "editDayName", params = "editDay")
+    public String editDayName(@ModelAttribute("nameOfDay") @Valid DayNameEntity dayName, BindingResult result) {
+        System.out.println(dayName.getDayName() + "<-test");
+        return "redirect:/planMeals/" + dayName.getDayName();
+    }
+
+
     @GetMapping
     public String prepareView(Model model) {
+        model.addAttribute("nameOfDay", new DayNameEntity());
         model.addAttribute("planMealsForm", new PlanMealsForm());
-        String dayName =(String) model.getAttribute("dayName");
-        String mealName = (String)model.getAttribute("mealName");
-        List<ProductOfMealEntity> allByDayNameAndMealName = addProductToMealRepository.findAllByDayNameAndMealName(dayName, mealName);
-        model.addAttribute("allByDayNameAndMealName", allByDayNameAndMealName);
+//        List<ProductOfMealEntity> allByDayNameAndMealName = addProductToMealRepository.findAllByDayNameAndMealName(dayName , mealName);
+//        model.addAttribute("allByDayNameAndMealName", allByDayNameAndMealName);
         return "/meals/planMeals";
     }
 
     @PostMapping(params = "addProductToFirstMeal")
-    public String addProductToFirstMeal(@ModelAttribute("planMealsForm") @Valid PlanMealsForm planMealsForm, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "/meals/planMeals";
-        } else {
+    public String addProductToFirstMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm, Model model) {
+
+//        if (result.hasErrors()) {
+//            return "redirect:/planMeals";
+//        } else {
+        {
+            System.out.println(planMealsForm.getDayName() + "<- test nazwy dnia");
 //            System.out.println(planMealsForm.getProductName());
 //            System.out.println(planMealsForm.getWeight());
             DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
@@ -61,20 +84,11 @@ public class PlanMealsController {
 //            System.out.println(energyValue);
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
 
-            model.addAttribute("dayName", dayName);
+//            model.addAttribute("dayName", dayName);
             model.addAttribute("mealName", mealName);
 //            model.addAttribute("planMealsForm", planMealsForm.getProductOfMealList());
-            return "/meals/planMeals";
+
+            return "redirect:/home";
         }
     }
-
-
-//    @PostMapping(params = "removeProductFromFirstMeal")
-//    public String removeProductFromFirstMeal(@ModelAttribute PlanMealsForm planMealsForm, @RequestParam int removeProduct) {
-//        planMealsForm.getProductOfMealList().remove(removeProduct);
-//        return "/meals/planMeals";
-//    }
-
-
-
 }

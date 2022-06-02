@@ -23,12 +23,12 @@
     <title>DietFromAtoZ - Menu</title>
 
     <!-- Custom fonts for this template-->
-    <link href="theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="theme/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/theme/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -41,7 +41,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="theme/index.html">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -167,17 +167,17 @@
                 </button>
 
                 <!-- Topbar Search -->
-<%--                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">--%>
-<%--                    <div class="input-group">--%>
-<%--                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."--%>
-<%--                               aria-label="Search" aria-describedby="basic-addon2">--%>
-<%--                        <div class="input-group-append">--%>
-<%--                            <button class="btn btn-primary" type="button">--%>
-<%--                                <i class="fas fa-search fa-sm"></i>--%>
-<%--                            </button>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </form>--%>
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -249,17 +249,21 @@
 
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Zaplanuj posiłki</h1>
+                <spring:form action="/planMeals/editDayName" modelAttribute="nameOfDay" method="post">
+                    <spring:select path="dayName">
+                        <spring:option value="Poniedziałek">Poniedziałek</spring:option>
+                        <spring:option value="Wtorek">Wtorek</spring:option>
+                        <spring:option value="Środa">Środa</spring:option>
+                        <spring:option value="Czwartek">Czwartek</spring:option>
+                        <spring:option value="Piątek">Piątek</spring:option>
+                        <spring:option value="Sobota">Sobota</spring:option>
+                        <spring:option value="Niedziela">Niedziela</spring:option>
+                    </spring:select>
+                    <spring:button type="submit" name="editDay">Edit</spring:button>
+                </spring:form>
+
                 <spring:form action="/planMeals" modelAttribute="planMealsForm" method="post">
-                <spring:select path="dayName">
-                    <spring:option value="Poniedziałek"></spring:option>
-                    <spring:option value="Wtorek"></spring:option>
-                    <spring:option value="Środa"></spring:option>
-                    <spring:option value="Czwartek"></spring:option>
-                    <spring:option value="Piątek"></spring:option>
-                    <spring:option value="Sobota"></spring:option>
-                    <spring:option value="Niedziela"></spring:option>
-                </spring:select>
-                <!-- DataTales Example -->
+                <spring:input path="dayName" value="${dayName}"/>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">
@@ -271,7 +275,6 @@
                                 <spring:option value="Podwieczorek"></spring:option>
                                 <spring:option value="Kolacja"></spring:option>
                                 <spring:option value="II kolacja"></spring:option>
-
                             </spring:select></h6>
                     </div>
                     <div class="card-body">
@@ -297,7 +300,7 @@
                                     <th>Dynamicznie ilosć tłuszczu razem</th>
                                 </tr>
                                 </tfoot>
-                                <tbody>
+                                    <%--                                <tbody>--%>
                                 <tr>
 
                                     <div class="input-group">
@@ -314,26 +317,25 @@
                                     </spring:form>
                                 </tr>
                                 <c:forEach items="${allByDayNameAndMealName}" var="productOfMeal"
-                                                varStatus="status">
-                                <tr>
-
+                                           varStatus="status">
+                                    <tr>
                                         <td>${productOfMeal.productName}</td>
-                                        <td>${productOfMeal.weight}</td>
-                                        <td>${productOfMeal.energyValue}</td>
-                                        <td>${productOfMeal.protein}</td>
-                                        <td>${productOfMeal.carbohydrates}</td>
-                                        <td><${productOfMeal.fats}</td>
+                                        <td><c:out value="${productOfMeal.weight}"/></td>
+                                        <td><c:out value="${productOfMeal.energyValue}"/></td>
+                                        <td><c:out value="${productOfMeal.protein}"/></td>
+                                        <td><c:out value="${productOfMeal.carbohydrates}"/></td>
+                                        <td><c:out value="${productOfMeal.fats}"/></td>
 
                                         <td><spring:form action="/planMeals" modelAttribute="planMealsForm"
                                                          method="post">
                                             <spring:button name="removeProductFromFirstMeal"
                                                            value="${status.index}">Usuń</spring:button>
                                         </spring:form></td>
-                                    </c:forEach>
 
-                                </tr>
+                                    </tr>
+                                </c:forEach>
 
-                                </tbody>
+                                <%--                                </tbody>--%>
                             </table>
                         </div>
                     </div>

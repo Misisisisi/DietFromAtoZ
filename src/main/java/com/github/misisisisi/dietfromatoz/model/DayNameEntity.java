@@ -16,9 +16,9 @@ import java.util.List;
 public class DayNameEntity {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-//    @DateTimeFormat
+    //    @DateTimeFormat
 //    private LocalDate date;
     @NotBlank
     private String dayName;
@@ -26,4 +26,9 @@ public class DayNameEntity {
     private List<MealNameEntity> listOfMealsNames = new ArrayList<>();
     @ManyToOne
     private UserEntity owner;
+
+
+    public DayNameEntity(String dayName) {
+        dayName = this.dayName;
+    }
 }
