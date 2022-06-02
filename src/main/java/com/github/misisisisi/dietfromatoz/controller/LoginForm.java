@@ -3,8 +3,6 @@ package com.github.misisisisi.dietfromatoz.controller;
 import lombok.*;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -13,15 +11,9 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDetails {
+public class LoginForm {
 
-    @NotBlank
-    private String firstName;
-    @NotBlank
-    private String lastName;
     @Email
     private String email;
-    @Size(min = 8, max = 20, message = "Hasło musi mieć minimum 8 znaków")
     private String password;
-
 }

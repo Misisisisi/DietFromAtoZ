@@ -38,12 +38,12 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Cześć! Zaloguj się!</h1>
                                 </div>
-                                <spring:form action="/login" modelAttribute="createUserForm" method="get">
+                                <spring:form action="/login" modelAttribute="loginForm" method="get">
                                     <div class="form-group">
-                                        <spring:input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." path="email"/>
+                                        <spring:input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" path="email"/>
                                     </div>
                                     <div class="form-group">
-                                        <spring:input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" path="password"/>
+                                        <spring:input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Hasło" path="password"/>
                                     </div>
                                     <div class="form-group">
 <%--                                        <div class="custom-control custom-checkbox small">--%>
@@ -51,8 +51,8 @@
 <%--                                            <label class="custom-control-label" for="customCheck">Remember Me</label>--%>
 <%--                                        </div>--%>
                                     </div>
-                                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                        Login
+                                    <a href="/home" class="btn btn-primary btn-user btn-block">
+                                        Zaloguj
                                     </a>
 <%--                                    <hr>--%>
 <%--                                    <a href="index.html" class="btn btn-google btn-user btn-block">--%>
@@ -63,11 +63,11 @@
 <%--                                    </a>--%>
                                 </spring:form>
                                 <hr>
+<%--                                <div class="text-center">--%>
+<%--                                    <a class="small" href="forgot-password.html">Zapomniałeś hasła?</a>--%>
+<%--                                </div>--%>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Zapomniałeś hasła?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="register.html">Zarejestruj się!</a>
+                                    <a class="small" href="/register">Zarejestruj się!</a>
                                 </div>
                             </div>
                         </div>

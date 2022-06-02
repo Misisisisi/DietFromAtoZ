@@ -3,6 +3,7 @@ package com.github.misisisisi.dietfromatoz.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name="users")
@@ -17,7 +18,8 @@ public class UserEntity {
     private String username;
     @Column(nullable = false, length = 20)
     private String password;
-
+    @Email
+    @Column(nullable = false, unique = true, length = 20)
     private String email;
 
     private String firstName;

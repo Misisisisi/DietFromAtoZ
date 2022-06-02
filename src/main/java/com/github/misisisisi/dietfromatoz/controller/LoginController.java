@@ -18,21 +18,22 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class LoginController {
 
-    private final UserService userService;
+//    private final UserService userService;
 
-
+    @GetMapping
     public String login(Model model){
-        model.addAttribute("createUserForm", new CreateUserForm());
+        model.addAttribute("loginForm", new LoginForm());
+
         return "userInterface/login";
     }
-    @GetMapping
-    public String processLogin(@ModelAttribute("createUserForm") @Valid CreateUserForm createUserForm, BindingResult result) {
-        if (result.hasErrors()) {
-            return "userInterface/login";
-
-        } else {
-            userService.saveUser(createUserForm);
-            return "dashboard/homePage";
-        }
-    }
+//    @GetMapping
+//    public String processLogin(@ModelAttribute("createUserForm") @Valid CreateUserForm createUserForm, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "userInterface/login";
+//
+//        } else {
+//            userService.saveUser(createUserForm);
+//            return "dashboard/homePage";
+//        }
+//    }
 }
