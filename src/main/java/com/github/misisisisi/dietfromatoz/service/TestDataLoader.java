@@ -3,9 +3,11 @@ package com.github.misisisisi.dietfromatoz.service;
 import com.github.misisisisi.dietfromatoz.model.DayNameEntity;
 import com.github.misisisisi.dietfromatoz.model.MealNameEntity;
 import com.github.misisisisi.dietfromatoz.model.ProductEntity;
+import com.github.misisisisi.dietfromatoz.model.UserEntity;
 import com.github.misisisisi.dietfromatoz.repository.DayNameRepository;
 import com.github.misisisisi.dietfromatoz.repository.MealNameRepository;
 import com.github.misisisisi.dietfromatoz.repository.ProductRepository;
+import com.github.misisisisi.dietfromatoz.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -22,6 +24,7 @@ public class TestDataLoader {
     private final ProductRepository productRepository;
     private final DayNameRepository dayNameRepository;
     private final MealNameRepository mealNameRepository;
+    private final UserRepository userRepository;
 
     @EventListener
     public void loadData(ContextRefreshedEvent event) {
@@ -292,6 +295,13 @@ public class TestDataLoader {
         mealNameRepository.save(MealNameEntity.builder()
                 .mealName("II kolacja")
                 .build());
-
+        userRepository.save(UserEntity.builder()
+                .password("xxx")
+                .email("abc@gnmail.com")
+                .lastName("Kowalski")
+                .firstName("Jan")
+                .username("jankowalski")
+                .role("User")
+                .build());
     }
 }

@@ -27,6 +27,6 @@ public class PlanMealsForm {
     private List<ProductOfMealEntity> productOfMealList = new ArrayList<>();
     @NotBlank
     private String dayName;
-    @NotBlank
-    private String mealName;
+//    @NotBlank
+//    private String mealName;
 }

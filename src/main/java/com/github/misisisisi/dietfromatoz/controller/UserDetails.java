@@ -19,9 +19,13 @@ public class UserDetails {
     private String firstName;
     @NotBlank
     private String lastName;
-    @Email
+    @Email @NotBlank
     private String email;
     @Size(min = 8, max = 20, message = "Hasło musi mieć minimum 8 znaków")
     private String password;
+    @NotBlank
+    private String username;
+
+    private String role;
 
 }

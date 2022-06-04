@@ -1,15 +1,20 @@
 package com.github.misisisisi.dietfromatoz.service;
 
 
-import com.github.misisisisi.dietfromatoz.controller.CreateUserForm;
+import com.github.misisisisi.dietfromatoz.controller.UserDetails;
 import com.github.misisisisi.dietfromatoz.model.UserEntity;
-import org.springframework.stereotype.Service;
+
 import org.springframework.transaction.annotation.Transactional;
-@Service
+
+
 public interface UserService {
 
-    UserEntity findByName(String name);
+//    UserEntity findByName(String name);
+//  UserEntity findByEmail(String email);
+//
+//    UserEntity findById(Long id);
 
     @Transactional
-    void saveUser(CreateUserForm createUserForm);
-}
+    void saveUser(UserDetails userDetails);
+
+   }

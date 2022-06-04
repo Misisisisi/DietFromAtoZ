@@ -34,9 +34,20 @@ public class PlanMealsController {
         DayNameEntity dayNameEntity = new DayNameEntity(dayName);
         model.addAttribute("nameOfDay", dayNameEntity);
         model.addAttribute("planMealsForm", new PlanMealsForm());
-        List<ProductOfMealEntity> allByDayNameAndMealName = addProductToMealRepository.findAllBreakfastFromDay(dayName);
-        model.addAttribute("allByDayNameAndMealName", allByDayNameAndMealName);
+        List<ProductOfMealEntity> allByBreakfast = addProductToMealRepository.findAllBreakfastFromDay(dayName);
+        model.addAttribute("allByBreakfast", allByBreakfast);
+        List<ProductOfMealEntity> allBySecondBreakfast = addProductToMealRepository.findAllSecondBreakfastFromDay(dayName);
+        model.addAttribute("allBySecondBreakfast", allBySecondBreakfast);
+        List<ProductOfMealEntity> allByLunch = addProductToMealRepository.findAlLunchFromDay(dayName);
+        model.addAttribute("allByLunch", allByLunch);
+        List<ProductOfMealEntity> allByTea = addProductToMealRepository.findAlTeaFromDay(dayName);
+        model.addAttribute("allByTea", allByTea);
+        List<ProductOfMealEntity> allByDinner = addProductToMealRepository.findAlDinnerFromDay(dayName);
+        model.addAttribute("allByDinner", allByDinner);
+
+
         System.out.println(dayName);
+
         return "/meals/planMeals";
     }
 
@@ -52,23 +63,17 @@ public class PlanMealsController {
     public String prepareView(Model model) {
         model.addAttribute("nameOfDay", new DayNameEntity());
         model.addAttribute("planMealsForm", new PlanMealsForm());
-//        List<ProductOfMealEntity> allByDayNameAndMealName = addProductToMealRepository.findAllByDayNameAndMealName(dayName , mealName);
-//        model.addAttribute("allByDayNameAndMealName", allByDayNameAndMealName);
+
         return "/meals/planMeals";
     }
 
     @PostMapping(params = "addProductToFirstMeal")
-    public String addProductToFirstMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm, Model model) {
+    public String addProductToFirstMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
 
-//        if (result.hasErrors()) {
-//            return "redirect:/planMeals";
-//        } else {
         {
-            System.out.println(planMealsForm.getDayName() + "<- test nazwy dnia");
-//            System.out.println(planMealsForm.getProductName());
-//            System.out.println(planMealsForm.getWeight());
+
             DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
-            MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName(planMealsForm.getMealName());
+            MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName("Śniadanie");
             ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
             double protein = productByName.getProtein() * (planMealsForm.getWeight() / productByName.getWeight());
             double carbohydrates = productByName.getCarbohydrates() * (planMealsForm.getWeight() / productByName.getWeight());
@@ -80,15 +85,110 @@ public class PlanMealsController {
             fats = Math.round(fats);
             energyValue = Math.round(energyValue);
             ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName);
-//            planMealsForm.getProductOfMealList().add(productOfMeal);
-//            System.out.println(energyValue);
+
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
 
-//            model.addAttribute("dayName", dayName);
-            model.addAttribute("mealName", mealName);
-//            model.addAttribute("planMealsForm", planMealsForm.getProductOfMealList());
-
             return "redirect:/planMeals/" + dayName.getDayName();
+        }
+    }
+
+    @PostMapping(params = "addProductToSecondMeal")
+    public String addProductToSecondMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
+
+        {
+
+            DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
+            MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName("II śniadanie");
+            ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
+            double protein = productByName.getProtein() * (planMealsForm.getWeight() / productByName.getWeight());
+            double carbohydrates = productByName.getCarbohydrates() * (planMealsForm.getWeight() / productByName.getWeight());
+            double fats = productByName.getFats() * (planMealsForm.getWeight() / productByName.getWeight());
+            double energyValue = productByName.getEnergyValue() * (planMealsForm.getWeight() / productByName.getWeight());
+
+            protein = Math.round(protein);
+            carbohydrates = Math.round(carbohydrates);
+            fats = Math.round(fats);
+            energyValue = Math.round(energyValue);
+            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName);
+
+            addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
+
+            return "redirect:/planMeals/" + dayName.getDayName() + "#secondBreakfast";
+        }
+    }
+
+    @PostMapping(params = "addProductToThirdMeal")
+    public String addProductToThirdMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
+
+        {
+
+            DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
+            MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName("Obiad");
+            ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
+            double protein = productByName.getProtein() * (planMealsForm.getWeight() / productByName.getWeight());
+            double carbohydrates = productByName.getCarbohydrates() * (planMealsForm.getWeight() / productByName.getWeight());
+            double fats = productByName.getFats() * (planMealsForm.getWeight() / productByName.getWeight());
+            double energyValue = productByName.getEnergyValue() * (planMealsForm.getWeight() / productByName.getWeight());
+
+            protein = Math.round(protein);
+            carbohydrates = Math.round(carbohydrates);
+            fats = Math.round(fats);
+            energyValue = Math.round(energyValue);
+            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName);
+
+            addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
+
+            return "redirect:/planMeals/" + dayName.getDayName() + "#lunch";
+        }
+    }
+
+    @PostMapping(params = "addProductToFourthMeal")
+    public String addProductToFourthMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
+
+        {
+
+            DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
+            MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName("Podwieczorek");
+            ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
+            double protein = productByName.getProtein() * (planMealsForm.getWeight() / productByName.getWeight());
+            double carbohydrates = productByName.getCarbohydrates() * (planMealsForm.getWeight() / productByName.getWeight());
+            double fats = productByName.getFats() * (planMealsForm.getWeight() / productByName.getWeight());
+            double energyValue = productByName.getEnergyValue() * (planMealsForm.getWeight() / productByName.getWeight());
+
+            protein = Math.round(protein);
+            carbohydrates = Math.round(carbohydrates);
+            fats = Math.round(fats);
+            energyValue = Math.round(energyValue);
+            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName);
+
+            addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
+
+            return "redirect:/planMeals/" + dayName.getDayName() + "#tea";
+        }
+    }
+
+    @PostMapping(params = "addProductToFifthMeal")
+    public String addProductToFifthMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
+
+        {
+
+            DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
+            MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName("Kolacja");
+            ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
+            double protein = productByName.getProtein() * (planMealsForm.getWeight() / productByName.getWeight());
+            double carbohydrates = productByName.getCarbohydrates() * (planMealsForm.getWeight() / productByName.getWeight());
+            double fats = productByName.getFats() * (planMealsForm.getWeight() / productByName.getWeight());
+            double energyValue = productByName.getEnergyValue() * (planMealsForm.getWeight() / productByName.getWeight());
+
+            protein = Math.round(protein);
+            carbohydrates = Math.round(carbohydrates);
+            fats = Math.round(fats);
+            energyValue = Math.round(energyValue);
+            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName);
+
+            addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
+
+            return "redirect:/planMeals/" + dayName.getDayName() + "#dinner";
         }
     }
 }

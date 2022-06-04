@@ -259,23 +259,14 @@
                         <spring:option value="Sobota">Sobota</spring:option>
                         <spring:option value="Niedziela">Niedziela</spring:option>
                     </spring:select>
-                    <spring:button type="submit" name="editDay">Edit</spring:button>
+                    <spring:button type="submit" name="editDay">Wybierz</spring:button>
                 </spring:form>
 
                 <spring:form action="/planMeals" modelAttribute="planMealsForm" method="post">
-                <spring:input path="dayName" value="${dayName}"/>
+                <spring:input class="m-20 font-weight-bold text-primary" path="dayName" value="${dayName}"/>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">
-                            <spring:select path="mealName">
-                                <spring:option value="Śniadanie"></spring:option>
-                                <spring:option value="II śniadanie"></spring:option>
-                                <spring:option value="Lunch"></spring:option>
-                                <spring:option value="Obiad"></spring:option>
-                                <spring:option value="Podwieczorek"></spring:option>
-                                <spring:option value="Kolacja"></spring:option>
-                                <spring:option value="II kolacja"></spring:option>
-                            </spring:select></h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Śniadanie</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -316,7 +307,7 @@
                                     </div>
                                     </spring:form>
                                 </tr>
-                                <c:forEach items="${allByDayNameAndMealName}" var="productOfMeal"
+                                <c:forEach items="${allByBreakfast}" var="productOfMeal"
                                            varStatus="status">
                                     <tr>
                                         <td>${productOfMeal.productName}</td>
@@ -340,10 +331,12 @@
                         </div>
                     </div>
                 </div>
-
+                <section id="secondBreakfast">
+                <spring:form action="/planMeals" modelAttribute="planMealsForm" method="post">
+                <spring:hidden class="m-20 font-weight-bold text-primary" path="dayName" value="${dayName}"/>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">II Śniadanie</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">II śniadanie</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -351,16 +344,16 @@
                                 <thead>
                                 <tr>
                                     <th>Składnik</th>
-                                    <th>Gramatura</th>
-                                    <th>Ilość kalorii</th>
-                                    <th>Ilość białka</th>
-                                    <th>Ilość węglowodanów</th>
-                                    <th>Ilość tłuszczu</th>
+                                    <th>Gramatura [g]</th>
+                                    <th>Ilość kalorii [kcal]</th>
+                                    <th>Ilość białka [g]</th>
+                                    <th>Ilość węglowodanów [g]</th>
+                                    <th>Ilość tłuszczu [g]</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>II Śniadanie</th>
+                                    <th></th>
                                     <th>Razem</th>
                                     <th>Dynamicznie ilosć kalorii razem</th>
                                     <th>Dynamicznie ilosć białka razem</th>
@@ -368,21 +361,51 @@
                                     <th>Dynamicznie ilosć tłuszczu razem</th>
                                 </tr>
                                 </tfoot>
-                                <tbody>
+                                    <%--                                <tbody>--%>
                                 <tr>
-                                    <td>Składnik -dynamicznie</td>
-                                    <td>Gramatura -dynamicznie</td>
-                                    <td>kalorie - dynamicznie</td>
-                                    <td>białko - dynamicznie</td>
-                                    <td>węgle- dynamicznie</td>
-                                    <td>tłuszcz - dynamicznie</td>
-                                </tr>
 
-                                </tbody>
+                                    <div class="input-group">
+                                        <spring:input path="productName" type="text"
+                                                      class="form-control bg-light border-10 small"
+                                                      placeholder="Dodaj produkt..."/>
+                                        <spring:input path="weight" type="number"
+                                                      class="form-control bg-light border-10 small"
+                                                      placeholder="Podaj gramaturę"/>
+                                        <div class="input-group-append">
+                                            <spring:button name="addProductToSecondMeal">Dodaj</spring:button>
+                                        </div>
+                                    </div>
+                                    </spring:form>
+                                </tr>
+                                <c:forEach items="${allBySecondBreakfast}" var="productOfMeal"
+                                           varStatus="status">
+                                    <tr>
+                                        <td>${productOfMeal.productName}</td>
+                                        <td><c:out value="${productOfMeal.weight}"/></td>
+                                        <td><c:out value="${productOfMeal.energyValue}"/></td>
+                                        <td><c:out value="${productOfMeal.protein}"/></td>
+                                        <td><c:out value="${productOfMeal.carbohydrates}"/></td>
+                                        <td><c:out value="${productOfMeal.fats}"/></td>
+
+                                        <td><spring:form action="/planMeals" modelAttribute="planMealsForm"
+                                                         method="post">
+                                            <spring:button name="removeProductFromFirstMeal"
+                                                           value="${status.index}">Usuń</spring:button>
+                                        </spring:form></td>
+
+                                    </tr>
+                                </c:forEach>
+
+                                <%--                                </tbody>--%>
                             </table>
                         </div>
                     </div>
                 </div>
+                </section>
+
+                <section id="lunch">
+                <spring:form action="/planMeals" modelAttribute="planMealsForm" method="post">
+                <spring:hidden class="m-20 font-weight-bold text-primary" path="dayName" value="${dayName}"/>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Obiad</h6>
@@ -393,16 +416,16 @@
                                 <thead>
                                 <tr>
                                     <th>Składnik</th>
-                                    <th>Gramatura</th>
-                                    <th>Ilość kalorii</th>
-                                    <th>Ilość białka</th>
-                                    <th>Ilość węglowodanów</th>
-                                    <th>Ilość tłuszczu</th>
+                                    <th>Gramatura [g]</th>
+                                    <th>Ilość kalorii [kcal]</th>
+                                    <th>Ilość białka [g]</th>
+                                    <th>Ilość węglowodanów [g]</th>
+                                    <th>Ilość tłuszczu [g]</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Obiad</th>
+                                    <th></th>
                                     <th>Razem</th>
                                     <th>Dynamicznie ilosć kalorii razem</th>
                                     <th>Dynamicznie ilosć białka razem</th>
@@ -410,108 +433,189 @@
                                     <th>Dynamicznie ilosć tłuszczu razem</th>
                                 </tr>
                                 </tfoot>
-                                <tbody>
+                                    <%--                                <tbody>--%>
                                 <tr>
-                                    <td>Składnik -dynamicznie</td>
-                                    <td>Gramatura -dynamicznie</td>
-                                    <td>kalorie - dynamicznie</td>
-                                    <td>białko - dynamicznie</td>
-                                    <td>węgle- dynamicznie</td>
-                                    <td>tłuszcz - dynamicznie</td>
-                                </tr>
 
-                                </tbody>
+                                    <div class="input-group">
+                                        <spring:input path="productName" type="text"
+                                                      class="form-control bg-light border-10 small"
+                                                      placeholder="Dodaj produkt..."/>
+                                        <spring:input path="weight" type="number"
+                                                      class="form-control bg-light border-10 small"
+                                                      placeholder="Podaj gramaturę"/>
+                                        <div class="input-group-append">
+                                            <spring:button name="addProductToThirdMeal">Dodaj</spring:button>
+                                        </div>
+                                    </div>
+                                    </spring:form>
+                                </tr>
+                                <c:forEach items="${allByLunch}" var="productOfMeal"
+                                           varStatus="status">
+                                    <tr>
+                                        <td>${productOfMeal.productName}</td>
+                                        <td><c:out value="${productOfMeal.weight}"/></td>
+                                        <td><c:out value="${productOfMeal.energyValue}"/></td>
+                                        <td><c:out value="${productOfMeal.protein}"/></td>
+                                        <td><c:out value="${productOfMeal.carbohydrates}"/></td>
+                                        <td><c:out value="${productOfMeal.fats}"/></td>
+
+                                        <td><spring:form action="/planMeals" modelAttribute="planMealsForm"
+                                                         method="post">
+                                            <spring:button name="removeProductFromFirstMeal"
+                                                           value="${status.index}">Usuń</spring:button>
+                                        </spring:form></td>
+
+                                    </tr>
+                                </c:forEach>
+
+                                <%--                                </tbody>--%>
                             </table>
                         </div>
                     </div>
                 </div>
+                </section>
+                <section id="tea">
+                    <spring:form action="/planMeals" modelAttribute="planMealsForm" method="post">
+                    <spring:hidden class="m-20 font-weight-bold text-primary" path="dayName" value="${dayName}"/>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Podwieczorek</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="tea" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Składnik</th>
+                                        <th>Gramatura [g]</th>
+                                        <th>Ilość kalorii [kcal]</th>
+                                        <th>Ilość białka [g]</th>
+                                        <th>Ilość węglowodanów [g]</th>
+                                        <th>Ilość tłuszczu [g]</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th>Razem</th>
+                                        <th>Dynamicznie ilosć kalorii razem</th>
+                                        <th>Dynamicznie ilosć białka razem</th>
+                                        <th>Dynamicznie ilosć wegli razem</th>
+                                        <th>Dynamicznie ilosć tłuszczu razem</th>
+                                    </tr>
+                                    </tfoot>
+                                        <%--                                <tbody>--%>
+                                    <tr>
 
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Podwieczorek</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="teaTime" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>Składnik</th>
-                                    <th>Gramatura</th>
-                                    <th>Ilość kalorii</th>
-                                    <th>Ilość białka</th>
-                                    <th>Ilość węglowodanów</th>
-                                    <th>Ilość tłuszczu</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>Podwieczorek</th>
-                                    <th>Razem</th>
-                                    <th>Dynamicznie ilosć kalorii razem</th>
-                                    <th>Dynamicznie ilosć białka razem</th>
-                                    <th>Dynamicznie ilosć wegli razem</th>
-                                    <th>Dynamicznie ilosć tłuszczu razem</th>
-                                </tr>
-                                </tfoot>
-                                <tbody>
-                                <tr>
-                                    <td>Składnik -dynamicznie</td>
-                                    <td>Gramatura -dynamicznie</td>
-                                    <td>kalorie - dynamicznie</td>
-                                    <td>białko - dynamicznie</td>
-                                    <td>węgle- dynamicznie</td>
-                                    <td>tłuszcz - dynamicznie</td>
-                                </tr>
+                                        <div class="input-group">
+                                            <spring:input path="productName" type="text"
+                                                          class="form-control bg-light border-10 small"
+                                                          placeholder="Dodaj produkt..."/>
+                                            <spring:input path="weight" type="number"
+                                                          class="form-control bg-light border-10 small"
+                                                          placeholder="Podaj gramaturę"/>
+                                            <div class="input-group-append">
+                                                <spring:button name="addProductToFourthMeal">Dodaj</spring:button>
+                                            </div>
+                                        </div>
+                                        </spring:form>
+                                    </tr>
+                                    <c:forEach items="${allByTea}" var="productOfMeal"
+                                               varStatus="status">
+                                        <tr>
+                                            <td>${productOfMeal.productName}</td>
+                                            <td><c:out value="${productOfMeal.weight}"/></td>
+                                            <td><c:out value="${productOfMeal.energyValue}"/></td>
+                                            <td><c:out value="${productOfMeal.protein}"/></td>
+                                            <td><c:out value="${productOfMeal.carbohydrates}"/></td>
+                                            <td><c:out value="${productOfMeal.fats}"/></td>
 
-                                </tbody>
-                            </table>
+                                            <td><spring:form action="/planMeals" modelAttribute="planMealsForm"
+                                                             method="post">
+                                                <spring:button name="removeProductFromFirstMeal"
+                                                               value="${status.index}">Usuń</spring:button>
+                                            </spring:form></td>
+
+                                        </tr>
+                                    </c:forEach>
+
+                                    <%--                                </tbody>--%>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Kolacja</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dinner" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>Składnik</th>
-                                    <th>Gramatura</th>
-                                    <th>Ilość kalorii</th>
-                                    <th>Ilość białka</th>
-                                    <th>Ilość węglowodanów</th>
-                                    <th>Ilość tłuszczu</th>
-                                </tr>
-                                </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>Kolacja</th>
-                                    <th>Razem</th>
-                                    <th>Dynamicznie ilosć kalorii razem</th>
-                                    <th>Dynamicznie ilosć białka razem</th>
-                                    <th>Dynamicznie ilosć wegli razem</th>
-                                    <th>Dynamicznie ilosć tłuszczu razem</th>
-                                </tr>
-                                </tfoot>
-                                <tbody>
-                                <tr>
-                                    <td>Składnik -dynamicznie</td>
-                                    <td>Gramatura -dynamicznie</td>
-                                    <td>kalorie - dynamicznie</td>
-                                    <td>białko - dynamicznie</td>
-                                    <td>węgle- dynamicznie</td>
-                                    <td>tłuszcz - dynamicznie</td>
-                                </tr>
+                </section>
+                <section id="dinner">
+                    <spring:form action="/planMeals" modelAttribute="planMealsForm" method="post">
+                    <spring:hidden class="m-20 font-weight-bold text-primary" path="dayName" value="${dayName}"/>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Kolacja</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dinner" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Składnik</th>
+                                        <th>Gramatura [g]</th>
+                                        <th>Ilość kalorii [kcal]</th>
+                                        <th>Ilość białka [g]</th>
+                                        <th>Ilość węglowodanów [g]</th>
+                                        <th>Ilość tłuszczu [g]</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th>Razem</th>
+                                        <th>Dynamicznie ilosć kalorii razem</th>
+                                        <th>Dynamicznie ilosć białka razem</th>
+                                        <th>Dynamicznie ilosć wegli razem</th>
+                                        <th>Dynamicznie ilosć tłuszczu razem</th>
+                                    </tr>
+                                    </tfoot>
+                                        <%--                                <tbody>--%>
+                                    <tr>
 
-                                </tbody>
-                            </table>
+                                        <div class="input-group">
+                                            <spring:input path="productName" type="text"
+                                                          class="form-control bg-light border-10 small"
+                                                          placeholder="Dodaj produkt..."/>
+                                            <spring:input path="weight" type="number"
+                                                          class="form-control bg-light border-10 small"
+                                                          placeholder="Podaj gramaturę"/>
+                                            <div class="input-group-append">
+                                                <spring:button name="addProductToFifthMeal">Dodaj</spring:button>
+                                            </div>
+                                        </div>
+                                        </spring:form>
+                                    </tr>
+                                    <c:forEach items="${allByDinner}" var="productOfMeal"
+                                               varStatus="status">
+                                        <tr>
+                                            <td>${productOfMeal.productName}</td>
+                                            <td><c:out value="${productOfMeal.weight}"/></td>
+                                            <td><c:out value="${productOfMeal.energyValue}"/></td>
+                                            <td><c:out value="${productOfMeal.protein}"/></td>
+                                            <td><c:out value="${productOfMeal.carbohydrates}"/></td>
+                                            <td><c:out value="${productOfMeal.fats}"/></td>
+
+                                            <td><spring:form action="/planMeals" modelAttribute="planMealsForm"
+                                                             method="post">
+                                                <spring:button name="removeProductFromFirstMeal"
+                                                               value="${status.index}">Usuń</spring:button>
+                                            </spring:form></td>
+
+                                        </tr>
+                                    </c:forEach>
+
+                                    <%--                                </tbody>--%>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-            </div>
+                </section>
             <!-- /.container-fluid -->
 
         </div>
