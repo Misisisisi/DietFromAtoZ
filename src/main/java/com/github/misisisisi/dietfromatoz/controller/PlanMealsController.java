@@ -134,7 +134,25 @@ public class PlanMealsController {
         model.addAttribute("dinnerCarbohydrates", dinnerCarbohydrates);
         model.addAttribute("dinnerFats", dinnerFats);
 
+        List<ProductOfMealEntity> allFromDay = addProductToMealRepository.findAllProductsFromDay(dayName);
+        model.addAttribute("allFromDay", allFromDay);
 
+        double allDayEnergy = 0;
+        double allDayProtein = 0;
+        double allDayCarbohydrates = 0;
+        double allDayFats = 0;
+
+        for (int i = 0; i < allFromDay.size(); i++) {
+            allDayEnergy += allFromDay.get(i).getEnergyValue();
+            allDayProtein += allFromDay.get(i).getProtein();
+            allDayCarbohydrates += allFromDay.get(i).getCarbohydrates();
+            allDayFats += allFromDay.get(i).getFats();
+        }
+
+        model.addAttribute("allDayEnergy", allDayEnergy);
+        model.addAttribute("allDayProtein", allDayProtein);
+        model.addAttribute("allDayCarbohydrates", allDayCarbohydrates);
+        model.addAttribute("allDayFats", allDayFats);
         System.out.println(dayName);
 
         return "/meals/planMeals";

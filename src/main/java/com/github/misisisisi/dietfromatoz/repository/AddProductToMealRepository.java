@@ -28,4 +28,6 @@ public interface AddProductToMealRepository extends JpaRepository<ProductOfMealE
     @Query("SELECT productOfMeal FROM ProductOfMealEntity productOfMeal WHERE productOfMeal.mealName.mealName = 'Kolacja' AND productOfMeal.dayName.dayName = :dayName")
     List<ProductOfMealEntity> findAlDinnerFromDay(@Param("dayName")String dayName);
 
+    @Query("SELECT productOfMeal FROM ProductOfMealEntity productOfMeal WHERE productOfMeal.dayName.dayName = :dayName")
+    List<ProductOfMealEntity> findAllProductsFromDay(@Param("dayName")String dayName);
 }

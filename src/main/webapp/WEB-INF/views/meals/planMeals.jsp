@@ -266,6 +266,38 @@
                 </label>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">PODSUMOWANIE DNIA</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="summary" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>${dayName}</th>
+
+                                    <th>Wartość energetyczna [kcal]</th>
+                                    <th>Ilość białka [g]</th>
+                                    <th>Ilość węglowodanów [g]</th>
+                                    <th>Ilość tłuszczu [g]</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+
+                                    <th>Razem</th>
+                                    <th>${allDayEnergy} kcal</th>
+                                    <th>${allDayProtein} g</th>
+                                    <th>${allDayCarbohydrates} g</th>
+                                    <th>${allDayFats} g</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Śniadanie</h6>
                     </div>
                     <div class="card-body">
@@ -275,7 +307,7 @@
                                 <tr>
                                     <th>Składnik</th>
                                     <th>Gramatura [g]</th>
-                                    <th>Ilość kalorii [kcal]</th>
+                                    <th>Wartość energetyczna [kcal]</th>
                                     <th>Ilość białka [g]</th>
                                     <th>Ilość węglowodanów [g]</th>
                                     <th>Ilość tłuszczu [g]</th>
@@ -345,7 +377,7 @@
                                 <tr>
                                     <th>Składnik</th>
                                     <th>Gramatura [g]</th>
-                                    <th>Ilość kalorii [kcal]</th>
+                                    <th>Wartość energetyczna [kcal]</th>
                                     <th>Ilość białka [g]</th>
                                     <th>Ilość węglowodanów [g]</th>
                                     <th>Ilość tłuszczu [g]</th>
@@ -417,7 +449,7 @@
                                 <tr>
                                     <th>Składnik</th>
                                     <th>Gramatura [g]</th>
-                                    <th>Ilość kalorii [kcal]</th>
+                                    <th>Wartość energetyczna [kcal]</th>
                                     <th>Ilość białka [g]</th>
                                     <th>Ilość węglowodanów [g]</th>
                                     <th>Ilość tłuszczu [g]</th>
@@ -488,7 +520,7 @@
                                     <tr>
                                         <th>Składnik</th>
                                         <th>Gramatura [g]</th>
-                                        <th>Ilość kalorii [kcal]</th>
+                                        <th>Wartość energetyczna [kcal]</th>
                                         <th>Ilość białka [g]</th>
                                         <th>Ilość węglowodanów [g]</th>
                                         <th>Ilość tłuszczu [g]</th>
@@ -559,7 +591,7 @@
                                     <tr>
                                         <th>Składnik</th>
                                         <th>Gramatura [g]</th>
-                                        <th>Ilość kalorii [kcal]</th>
+                                        <th>Wartość energetyczna [kcal]</th>
                                         <th>Ilość białka [g]</th>
                                         <th>Ilość węglowodanów [g]</th>
                                         <th>Ilość tłuszczu [g]</th>

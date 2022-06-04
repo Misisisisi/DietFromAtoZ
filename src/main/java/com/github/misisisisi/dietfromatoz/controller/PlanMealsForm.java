@@ -19,9 +19,9 @@ import java.util.List;
 @AllArgsConstructor @Builder
 public class PlanMealsForm {
 
-    @NotBlank
+    @NotBlank (message = "Podaj nazwę produktu")
     private String productName;
-    @Positive
+    @Positive (message = "Wartość musi być większa od 0")
     private double weight;
     @Builder.Default
     private List<ProductOfMealEntity> productOfMealList = new ArrayList<>();
