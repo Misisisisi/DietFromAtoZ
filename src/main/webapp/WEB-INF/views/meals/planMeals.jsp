@@ -167,17 +167,17 @@
                 </button>
 
                 <!-- Topbar Search -->
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                               aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+<%--                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">--%>
+<%--                    <div class="input-group">--%>
+<%--                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."--%>
+<%--                               aria-label="Search" aria-describedby="basic-addon2">--%>
+<%--                        <div class="input-group-append">--%>
+<%--                            <button class="btn btn-primary" type="button">--%>
+<%--                                <i class="fas fa-search fa-sm"></i>--%>
+<%--                            </button>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </form>--%>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -285,10 +285,10 @@
                                 <tr>
                                     <th></th>
                                     <th>Razem</th>
-                                    <th>Dynamicznie ilosć kalorii razem</th>
-                                    <th>Dynamicznie ilosć białka razem</th>
-                                    <th>Dynamicznie ilosć wegli razem</th>
-                                    <th>Dynamicznie ilosć tłuszczu razem</th>
+                                    <th>${breakfastEnergy} kcal</th>
+                                    <th>${breakfastProtein} g</th>
+                                    <th>${breakfastCarbohydrates} g</th>
+                                    <th>${breakfastFats} g</th>
                                 </tr>
                                 </tfoot>
                                     <%--                                <tbody>--%>
@@ -353,12 +353,12 @@
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th></th>
+                                    <th>II śniadanie</th>
                                     <th>Razem</th>
-                                    <th>Dynamicznie ilosć kalorii razem</th>
-                                    <th>Dynamicznie ilosć białka razem</th>
-                                    <th>Dynamicznie ilosć wegli razem</th>
-                                    <th>Dynamicznie ilosć tłuszczu razem</th>
+                                    <th>${secondBreakfastEnergy} kcal</th>
+                                    <th>${secondBreakfastProtein} g</th>
+                                    <th>${secondBreakfastCarbohydrates} g</th>
+                                    <th>${secondBreakfastFats} g</th>
                                 </tr>
                                 </tfoot>
                                     <%--                                <tbody>--%>
@@ -425,12 +425,12 @@
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th></th>
+                                    <th>Obiad</th>
                                     <th>Razem</th>
-                                    <th>Dynamicznie ilosć kalorii razem</th>
-                                    <th>Dynamicznie ilosć białka razem</th>
-                                    <th>Dynamicznie ilosć wegli razem</th>
-                                    <th>Dynamicznie ilosć tłuszczu razem</th>
+                                    <th>${lunchEnergy} kcal</th>
+                                    <th>${lunchProtein} g</th>
+                                    <th>${lunchCarbohydrates} g</th>
+                                    <th>${lunchFats} g</th>
                                 </tr>
                                 </tfoot>
                                     <%--                                <tbody>--%>
@@ -496,12 +496,12 @@
                                     </thead>
                                     <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <th>Podwieczorek</th>
                                         <th>Razem</th>
-                                        <th>Dynamicznie ilosć kalorii razem</th>
-                                        <th>Dynamicznie ilosć białka razem</th>
-                                        <th>Dynamicznie ilosć wegli razem</th>
-                                        <th>Dynamicznie ilosć tłuszczu razem</th>
+                                        <th>${teaEnergy} kcal</th>
+                                        <th>${teaProtein} g</th>
+                                        <th>${teaCarbohydrates} g</th>
+                                        <th>${teaFats} g</th>
                                     </tr>
                                     </tfoot>
                                         <%--                                <tbody>--%>
@@ -567,12 +567,12 @@
                                     </thead>
                                     <tfoot>
                                     <tr>
-                                        <th></th>
+                                        <th>Kolacja</th>
                                         <th>Razem</th>
-                                        <th>Dynamicznie ilosć kalorii razem</th>
-                                        <th>Dynamicznie ilosć białka razem</th>
-                                        <th>Dynamicznie ilosć wegli razem</th>
-                                        <th>Dynamicznie ilosć tłuszczu razem</th>
+                                        <th>${dinnerEnergy} kcal</th>
+                                        <th>${dinnerProtein} g</th>
+                                        <th>${dinnerCarbohydrates} g</th>
+                                        <th>${dinnerFats} g</th>
                                     </tr>
                                     </tfoot>
                                         <%--                                <tbody>--%>
