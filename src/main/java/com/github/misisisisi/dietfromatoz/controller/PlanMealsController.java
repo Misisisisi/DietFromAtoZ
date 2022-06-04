@@ -88,7 +88,7 @@ public class PlanMealsController {
             model.addAttribute("mealName", mealName);
 //            model.addAttribute("planMealsForm", planMealsForm.getProductOfMealList());
 
-            return "redirect:/home";
+            return "redirect:/planMeals/" + dayName.getDayName();
         }
     }
 }
