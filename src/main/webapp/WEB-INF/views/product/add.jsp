@@ -83,7 +83,7 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="/planMeals">
+            <a class="nav-link" href="/planMeals/Poniedziałek">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Zaplanuj posiłki</span></a>
         </li>

@@ -55,7 +55,7 @@
                                             <a class="small" href="/create_personData">Oblicz swoje zapotrzebowanie</a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="small" href="/planMeals">Zaplanuj posiłki!</a>
+                                            <a class="small" href="/planMeals/Poniedziałek">Zaplanuj posiłki!</a>
 
                                         </div>
                                     </div>

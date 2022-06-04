@@ -55,7 +55,7 @@
                                             <a class="small" href="/count_BMI">Oblicz swoje BMI</a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="small" href="/planMeals">Zaplanuj posiłki!</a>
+                                            <a class="small" href="/planMeals/Poniedziałek">Zaplanuj posiłki!</a>
 
                                         </div>
                                     </div>

@@ -68,23 +68,18 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
+            <a class="nav-link" href="/count_BMI">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Oblicz</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Kalkulatory</h6>
-                    <a class="collapse-item" href="/count_BMI">BMI</a>
-                    <a class="collapse-item" href="/create_personData">Zapotrzebowanie</a>
-                </div>
-            </div>
+                <span>Oblicz BMI</span></a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="/create_personData">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Oblicz zapotrzebowanie</span></a>
+        </li>
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="/planMeals">
+            <a class="nav-link" href="/planMeals/Poniedziałek">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Zaplanuj posiłki</span></a>
         </li>
@@ -250,6 +245,7 @@
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Zaplanuj posiłki</h1>
                 <spring:form action="/planMeals/editDayName" modelAttribute="nameOfDay" method="post">
+                    <label>Wybierz dzień tygodnia:
                     <spring:select path="dayName">
                         <spring:option value="Poniedziałek">Poniedziałek</spring:option>
                         <spring:option value="Wtorek">Wtorek</spring:option>
@@ -259,11 +255,15 @@
                         <spring:option value="Sobota">Sobota</spring:option>
                         <spring:option value="Niedziela">Niedziela</spring:option>
                     </spring:select>
+
                     <spring:button type="submit" name="editDay">Wybierz</spring:button>
+                    </label>
                 </spring:form>
 
                 <spring:form action="/planMeals" modelAttribute="planMealsForm" method="post">
-                <spring:input class="m-20 font-weight-bold text-primary" path="dayName" value="${dayName}"/>
+                <label>Planujesz posiłki na:
+                    <spring:input placeholder="Nie wybrałeś/aś dnia" class="m-20 font-weight-bold text-primary" path="dayName" value="${dayName}"/>
+                </label>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Śniadanie</h6>
@@ -283,7 +283,7 @@
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th></th>
+                                    <th>Śniadanie</th>
                                     <th>Razem</th>
                                     <th>${breakfastEnergy} kcal</th>
                                     <th>${breakfastProtein} g</th>
