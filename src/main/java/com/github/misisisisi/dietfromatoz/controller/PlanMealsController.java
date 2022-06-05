@@ -198,8 +198,9 @@ public class PlanMealsController {
             ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName);
 
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
+            String encodeBreakfast = URLEncoder.encode(dayName.getDayName(), StandardCharsets.UTF_8);
 
-            return "redirect:/planMeals/" + dayName.getDayName();
+            return "redirect:/planMeals/" + encodeBreakfast;
         }
     }
 
@@ -223,8 +224,9 @@ public class PlanMealsController {
             ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName);
 
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
+            String encodeSecondBreakfast = URLEncoder.encode(dayName.getDayName(), StandardCharsets.UTF_8);
 
-            return "redirect:/planMeals/" + dayName.getDayName() + "#secondBreakfast";
+            return "redirect:/planMeals/" + encodeSecondBreakfast + "#secondBreakfast";
         }
     }
 
@@ -248,8 +250,9 @@ public class PlanMealsController {
             ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName);
 
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
+            String encodeLunch = URLEncoder.encode(dayName.getDayName(), StandardCharsets.UTF_8);
 
-            return "redirect:/planMeals/" + dayName.getDayName() + "#lunch";
+            return "redirect:/planMeals/" + encodeLunch + "#lunch";
         }
     }
 
@@ -273,8 +276,9 @@ public class PlanMealsController {
             ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName);
 
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
+            String encodeTea = URLEncoder.encode(dayName.getDayName(), StandardCharsets.UTF_8);
 
-            return "redirect:/planMeals/" + dayName.getDayName() + "#tea";
+            return "redirect:/planMeals/" + encodeTea + "#tea";
         }
     }
 
@@ -298,8 +302,10 @@ public class PlanMealsController {
             ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName);
 
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
+            String encodeDinner = URLEncoder.encode(dayName.getDayName(), StandardCharsets.UTF_8);
 
-            return "redirect:/planMeals/" + dayName.getDayName() + "#dinner";
+            return "redirect:/planMeals/" + encodeDinner + "#dinner";
         }
     }
+
 }
