@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 
@@ -153,16 +156,17 @@ public class PlanMealsController {
         model.addAttribute("allDayProtein", allDayProtein);
         model.addAttribute("allDayCarbohydrates", allDayCarbohydrates);
         model.addAttribute("allDayFats", allDayFats);
-        System.out.println(dayName);
+        System.out.println(dayName + "test1");
 
         return "/meals/planMeals";
     }
 
 
     @PostMapping(value = "editDayName", params = "editDay")
-    public String editDayName(@ModelAttribute("nameOfDay") @Valid DayNameEntity dayName, BindingResult result) {
+    public String editDayName(@ModelAttribute("nameOfDay") @Valid DayNameEntity dayName, BindingResult result) throws UnsupportedEncodingException {
         System.out.println(dayName.getDayName() + "<-test");
-        return "redirect:/planMeals/" + dayName.getDayName();
+        String encodeDay = URLEncoder.encode(dayName.getDayName(), StandardCharsets.UTF_8);
+        return "redirect:/planMeals/" + encodeDay;
     }
 
 
