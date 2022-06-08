@@ -41,18 +41,23 @@
                                 <spring:form action="/register" modelAttribute="userDetails" method="post">
                                     <div class="form-group">
                                         <spring:input class="form-control form-control-user"  placeholder="Imię" path="firstName"/>
+                                        <spring:errors path="firstName"/>
                                     </div>
                                     <div class="form-group">
                                         <spring:input class="form-control form-control-user"  placeholder="Nazwisko" path="lastName"/>
+                                        <spring:errors path="lastName"/>
                                     </div>
                                     <div class="form-group">
                                         <spring:input class="form-control form-control-user"  placeholder="Login" path="username"/>
+                                        <spring:errors path="username"/>
                                     </div>
                                     <div class="form-group">
                                         <spring:input type="email" class="form-control form-control-user" placeholder="Email" path="email"/>
+                                        <spring:errors path="email"/>
                                     </div>
                                     <div class="form-group">
                                         <spring:input type="password" class="form-control form-control-user" placeholder="Hasło" path="password"/>
+                                        <spring:errors path="password"/>
                                     </div>
                                     <div class="form-group">
                                             <%--                                        <div class="custom-control custom-checkbox small">--%>
