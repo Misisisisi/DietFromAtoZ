@@ -18,6 +18,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
   Optional<ProductEntity> findProductEntityByProteinBetween(int minimum, int maximum);
 
+  ProductEntity findProductEntityByProductName (String productName);
 
 
 }
