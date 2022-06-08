@@ -1,4 +1,4 @@
-# DietFromAtoZ :watermelon::avocado::pizza:
+# DietFromAtoZ :watermelon::avocado::pizza::hot_pepper::broccoli::eggplant:
 
 
 :green_salad: DietFromAdoZ is an application that helps in planning meals. 
@@ -9,4 +9,4 @@
 
 :croissant: You choose the products you want to eat and choose their grammage. 
 
-:hot_pepper::broccoli::eggplant:
+
