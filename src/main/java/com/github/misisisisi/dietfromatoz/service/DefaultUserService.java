@@ -4,6 +4,7 @@ import com.github.misisisisi.dietfromatoz.controller.UserDetails;
 import com.github.misisisisi.dietfromatoz.model.UserEntity;
 import com.github.misisisisi.dietfromatoz.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class DefaultUserService implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
 
 //    @Override
 //    public UserEntity findByName(String name) {
@@ -33,7 +36,7 @@ public class DefaultUserService implements UserService {
     @Transactional
     public void saveUser(UserDetails userDetails) {
         userRepository.save(UserEntity.builder()
-                .password(userDetails.getPassword())
+                .password(passwordEncoder.encode(userDetails.getPassword()))
                 .email(userDetails.getEmail())
                 .lastName(userDetails.getLastName())
                 .firstName(userDetails.getFirstName())
