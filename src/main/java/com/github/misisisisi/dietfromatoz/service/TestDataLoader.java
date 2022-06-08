@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @ConditionalOnProperty(name = "spring.jpa.hibernate.ddl-auto", havingValue = "create-drop")
@@ -25,6 +26,7 @@ public class TestDataLoader {
     private final DayNameRepository dayNameRepository;
     private final MealNameRepository mealNameRepository;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @EventListener
     public void loadData(ContextRefreshedEvent event) {
@@ -296,8 +298,8 @@ public class TestDataLoader {
                 .mealName("II kolacja")
                 .build());
         userRepository.save(UserEntity.builder()
-                .password("xxx")
-                .email("abc@gnmail.com")
+                .password(passwordEncoder.encode("xxx"))
+                .email("abc@gmail.com")
                 .lastName("Kowalski")
                 .firstName("Jan")
                 .username("jankowalski")
