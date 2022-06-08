@@ -19,6 +19,8 @@ import java.util.List;
 @AllArgsConstructor @Builder
 public class PlanMealsForm {
 
+
+    private Long id;
     @NotBlank (message = "Podaj nazwę produktu")
     private String productName;
     @Positive (message = "Wartość musi być większa od 0")
