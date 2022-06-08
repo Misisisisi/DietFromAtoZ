@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductsOfMeal {
+
     String productName;
     double protein;
     double carbohydrates;
