@@ -8,6 +8,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -165,18 +166,18 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-<%--                <!-- Topbar Search -->--%>
-<%--                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">--%>
-<%--                    <div class="input-group">--%>
-<%--&lt;%&ndash;                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."&ndash;%&gt;--%>
-<%--&lt;%&ndash;                               aria-label="Search" aria-describedby="basic-addon2">&ndash;%&gt;--%>
-<%--                        <div class="input-group-append">--%>
-<%--                            <button class="btn btn-primary" type="button">--%>
-<%--                                <i class="fas fa-search fa-sm"></i>--%>
-<%--                            </button>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </form>--%>
+                <%--                <!-- Topbar Search -->--%>
+                <%--                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">--%>
+                <%--                    <div class="input-group">--%>
+                <%--&lt;%&ndash;                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."&ndash;%&gt;--%>
+                <%--&lt;%&ndash;                               aria-label="Search" aria-describedby="basic-addon2">&ndash;%&gt;--%>
+                <%--                        <div class="input-group-append">--%>
+                <%--                            <button class="btn btn-primary" type="button">--%>
+                <%--                                <i class="fas fa-search fa-sm"></i>--%>
+                <%--                            </button>--%>
+                <%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </form>--%>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -207,36 +208,37 @@
 
 
                     <div class="topbar-divider d-none d-sm-block"></div>
+                    <a class="mr-2 d-none d-lg-inline text-gray-600" href="<c:url value="/logout" />">Wyloguj</a>
 
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
+                    <%--                    <!-- Nav Item - User Information -->--%>
+                    <%--                    <li class="nav-item dropdown no-arrow">--%>
+                    <%--                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"--%>
+                    <%--                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+                    <%--                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>--%>
+                    <%--                            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">--%>
+                    <%--                        </a>--%>
+                    <%--                        <!-- Dropdown - User Information -->--%>
+                    <%--                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"--%>
+                    <%--                             aria-labelledby="userDropdown">--%>
+                    <%--                            <a class="dropdown-item" href="#">--%>
+                    <%--                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>--%>
+                    <%--                                Profile--%>
+                    <%--                            </a>--%>
+                    <%--                            <a class="dropdown-item" href="#">--%>
+                    <%--                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>--%>
+                    <%--                                Settings--%>
+                    <%--                            </a>--%>
+                    <%--                            <a class="dropdown-item" href="#">--%>
+                    <%--                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>--%>
+                    <%--                                Activity Log--%>
+                    <%--                            </a>--%>
+                    <%--                            <div class="dropdown-divider"></div>--%>
+                    <%--                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">--%>
+                    <%--                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>--%>
+                    <%--                                Logout--%>
+                    <%--                            </a>--%>
+                    <%--                        </div>--%>
+                    <%--                    </li>--%>
 
                 </ul>
 
@@ -254,76 +256,79 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Produkt dodany.</h1>
                                 </div>
-                                    <hr>
-                                        <div class="text-center">
-                                            <a class="small" href="addProduct">Dodaj kolejny produkt</a>
-                                        </div>
-                                    <%--                <!-- Page Heading -->--%>
-                                    <%--                <h1 class="h3 mb-2 text-gray-800">Menu na dziś</h1>--%>
-                                    <%--                <p class="mb-4">Poniżej znajdują się posiłki, jakie na dziś zaplanowałeś ☺</p>--%>
-
-                                    <%--                <!-- DataTales Example -->--%>
-                                    <%--                <div class="card shadow mb-4">--%>
-                                    <%--                    <div class="card-header py-3">--%>
-                                    <%--                        <h6 class="m-0 font-weight-bold text-primary">Śniadanie (NAZWA POSIŁKU DYNAMICZNIE)</h6>--%>
-                                    <%--                    </div>--%>
-                                    <%--                    <div class="card-body">--%>
-                                    <%--                        <div class="table-responsive">--%>
-                                    <%--                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">--%>
-                                    <%--                                <thead>--%>
-                                    <%--                                <tr>--%>
-                                    <%--                                    <th>Składnik</th>--%>
-                                    <%--                                    <th>Gramatura</th>--%>
-                                    <%--                                    <th>Ilość kalorii</th>--%>
-                                    <%--                                    <th>Ilość białka</th>--%>
-                                    <%--                                    <th>Ilość węglowodanów</th>--%>
-                                    <%--                                    <th>Ilość tłuszczu</th>--%>
-                                    <%--                                </tr>--%>
-                                    <%--                                </thead>--%>
-
-                                    <%--                                <tbody>--%>
-                                    <%--                                <tr>--%>
-                                    <%--                                    <td>Składnik -dynamicznie</td>--%>
-                                    <%--                                    <td>Gramatura -dynamicznie</td>--%>
-                                    <%--                                    <td>kalorie - dynamicznie</td>--%>
-                                    <%--                                    <td>białko - dynamicznie</td>--%>
-                                    <%--                                    <td>węgle- dynamicznie</td>--%>
-                                    <%--                                    <td>tłuszcz - dynamicznie</td>--%>
-                                    <%--                                </tr>--%>
-
-                                    <%--                                </tbody>--%>
-                                    <%--                            </table>--%>
-                                    <%--                        </div>--%>
-                                    <%--                    </div>--%>
-                                    <%--                </div>--%>
-
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="addProduct">Dodaj kolejny produkt.</a>
                                 </div>
-                                <!-- /.container-fluid -->
+                                <div class="text-center">
+                                    <a class="small" href="/planMeals/Poniedziałek">Zaplanuj posiłki.</a>
+                                </div>
+                                <%--                <!-- Page Heading -->--%>
+                                <%--                <h1 class="h3 mb-2 text-gray-800">Menu na dziś</h1>--%>
+                                <%--                <p class="mb-4">Poniżej znajdują się posiłki, jakie na dziś zaplanowałeś ☺</p>--%>
+
+                                <%--                <!-- DataTales Example -->--%>
+                                <%--                <div class="card shadow mb-4">--%>
+                                <%--                    <div class="card-header py-3">--%>
+                                <%--                        <h6 class="m-0 font-weight-bold text-primary">Śniadanie (NAZWA POSIŁKU DYNAMICZNIE)</h6>--%>
+                                <%--                    </div>--%>
+                                <%--                    <div class="card-body">--%>
+                                <%--                        <div class="table-responsive">--%>
+                                <%--                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">--%>
+                                <%--                                <thead>--%>
+                                <%--                                <tr>--%>
+                                <%--                                    <th>Składnik</th>--%>
+                                <%--                                    <th>Gramatura</th>--%>
+                                <%--                                    <th>Ilość kalorii</th>--%>
+                                <%--                                    <th>Ilość białka</th>--%>
+                                <%--                                    <th>Ilość węglowodanów</th>--%>
+                                <%--                                    <th>Ilość tłuszczu</th>--%>
+                                <%--                                </tr>--%>
+                                <%--                                </thead>--%>
+
+                                <%--                                <tbody>--%>
+                                <%--                                <tr>--%>
+                                <%--                                    <td>Składnik -dynamicznie</td>--%>
+                                <%--                                    <td>Gramatura -dynamicznie</td>--%>
+                                <%--                                    <td>kalorie - dynamicznie</td>--%>
+                                <%--                                    <td>białko - dynamicznie</td>--%>
+                                <%--                                    <td>węgle- dynamicznie</td>--%>
+                                <%--                                    <td>tłuszcz - dynamicznie</td>--%>
+                                <%--                                </tr>--%>
+
+                                <%--                                </tbody>--%>
+                                <%--                            </table>--%>
+                                <%--                        </div>--%>
+                                <%--                    </div>--%>
+                                <%--                </div>--%>
 
                             </div>
+                            <!-- /.container-fluid -->
 
-                            <!-- Bootstrap core JavaScript-->
-                            <script src="theme/vendor/jquery/jquery.min.js"></script>
-                            <script src="theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-                            <!-- Core plugin JavaScript-->
-                            <script src="theme/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-                            <!-- Custom scripts for all pages-->
-                            <script src="theme/js/sb-admin-2.min.js"></script>
-
-                            <!-- Page level plugins -->
-                            <script src="theme/vendor/chart.js/Chart.min.js"></script>
-
-                            <!-- Page level custom scripts -->
-                            <script src="theme/js/demo/chart-area-demo.js"></script>
-                            <script src="theme/js/demo/chart-pie-demo.js"></script>
                         </div>
+
+                        <!-- Bootstrap core JavaScript-->
+                        <script src="theme/vendor/jquery/jquery.min.js"></script>
+                        <script src="theme/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+                        <!-- Core plugin JavaScript-->
+                        <script src="theme/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+                        <!-- Custom scripts for all pages-->
+                        <script src="theme/js/sb-admin-2.min.js"></script>
+
+                        <!-- Page level plugins -->
+                        <script src="theme/vendor/chart.js/Chart.min.js"></script>
+
+                        <!-- Page level custom scripts -->
+                        <script src="theme/js/demo/chart-area-demo.js"></script>
+                        <script src="theme/js/demo/chart-pie-demo.js"></script>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 
