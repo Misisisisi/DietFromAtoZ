@@ -27,7 +27,7 @@ public class DefaultProductService implements ProductService {
                 .protein(createProductForm.getProtein())
                 .carbohydrates(createProductForm.getCarbohydrates())
                 .fats(createProductForm.getFats())
-                .weight(createProductForm.getWeight())
+                .weight(100)
 //                .owner(createProductForm.getUser())
                 .build());
 
