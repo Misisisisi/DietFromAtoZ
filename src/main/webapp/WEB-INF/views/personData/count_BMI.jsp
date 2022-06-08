@@ -40,11 +40,15 @@
                                 <spring:form action="/count_BMI" modelAttribute="bmiCalcForm" method="post">
                                 <div class="form-group">
                                     <label>Masa ciała [kg]<br>
-                                        <spring:input path="bodyWeight"/></label><br>
+                                        <spring:input path="bodyWeight"/><br>
+                                        <spring:errors path="bodyWeight"/>
+                                    </label><br>
                                 </div>
                                 <div class="form-group">
                                     <label>Wzrost [cm]<br>
-                                        <spring:input path="bodyHeight"/></label><br>
+                                        <spring:input path="bodyHeight"/><br>
+                                        <spring:errors path="bodyHeight"/>
+                                    </label><br>
                                     <div class="form-group">
                                         <spring:button>Oblicz</spring:button>
                                     </div>
@@ -52,7 +56,7 @@
                                         </spring:form>
                                         <hr>
                                         <div class="text-center">
-                                            <a class="small" href="/create_personData">Oblicz swoje zapotrzebowanie</a>
+                                            <a class="small" href="/create_personData">Oblicz swoje zapotrzebowanie.</a>
                                         </div>
                                         <div class="text-center">
                                             <a class="small" href="/planMeals/Poniedziałek">Zaplanuj posiłki!</a>
