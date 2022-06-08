@@ -1,7 +1,10 @@
 package com.github.misisisisi.dietfromatoz.controller;
 
+import com.github.misisisisi.dietfromatoz.validator.ProductExistsConstraint;
 import lombok.*;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -12,16 +15,16 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor @Builder
 public class CreateProductForm {
 
-    @NotBlank
+    @NotBlank (message = "Podaj nazwę produktu")
+    @ProductExistsConstraint (message = "Produkt już istnieje w bazie")
     private String productName;
-    @NotNull
+    @Min(0) @Max(900)
     private double energyValue;
-    @NotNull
+    @Min(0) @Max(100)
     private double protein;
-    @NotNull
+    @Min(0) @Max(100)
     private double carbohydrates;
-    @NotNull
+    @Min(0) @Max(100)
     private double fats;
-    @NotNull
-    private double weight;
+
 }

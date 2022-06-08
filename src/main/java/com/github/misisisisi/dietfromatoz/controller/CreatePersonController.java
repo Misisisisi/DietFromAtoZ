@@ -41,6 +41,8 @@ public class CreatePersonController {
             resultCPM = Math.round(resultCPM);
             resultEndCPM = Math.round(resultEndCPM);
             model.addAttribute("result", new Results(resultCPM, resultEndCPM, resultPPM));
+
+
             return "/personData/resultCPM";
         }
     }

@@ -13,9 +13,10 @@ import javax.validation.constraints.*;
 public class BmiCalcForm {
 
 
-    @NotNull @Positive
+    @NotNull @Positive (message = "Podaj prawidłową masę ciała")
     private double bodyWeight;
-    @NotNull @Min(50) @Max(250)
+    @NotNull (message = "Podaj prawidłowy wzrost w centymetrach")
+    @Min(50) @Max(250)
     private double bodyHeight;
 
 }

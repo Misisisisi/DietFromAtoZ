@@ -9,17 +9,17 @@ import javax.validation.constraints.*;
 @NoArgsConstructor @AllArgsConstructor @Builder
 public class CreatePersonForm {
 
-    @NotBlank
+    @NotBlank (message = "Wybierz płeć")
     private String sex;
-    @NotNull @Positive
+    @NotNull @Positive (message = "Podaj swoją masę ciała")
     private double bodyWeight;
     @NotNull @Max(250) @Min(50)
     private int bodyHeight;
-    @NotNull @Max(120) @PositiveOrZero
+    @NotNull @Min(1) @Max(120)
     private int age;
-    @NotBlank
+    @NotBlank (message = "Wybierz poziom aktywności swojej fizycznej")
     private String activity;
-    @NotBlank
+    @NotBlank (message = "Wybierz swój cel")
     private String aim;
     private UserEntity user;
 }
