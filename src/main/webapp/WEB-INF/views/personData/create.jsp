@@ -39,20 +39,28 @@
                                 <spring:form action="/create_personData" modelAttribute="createPersonForm" method="post">
                                 <div class="form-group">
                                     <label>Masa ciała [kg]<br>
-                                        <spring:input path="bodyWeight"/></label><br>
+                                        <spring:input path="bodyWeight"/><br>
+                                        <spring:errors path="bodyWeight"/>
+                                    </label><br>
                                 </div>
                                 <div class="form-group">
                                     <label>Wzrost [cm]<br>
-                                        <spring:input path="bodyHeight"/></label><br>
+                                        <spring:input path="bodyHeight"/><br>
+                                        <spring:errors path="bodyHeight"/>
+                                    </label><br>
                                 </div>
                                 <div class="form-group">
                                     <label>Wiek<br>
-                                        <spring:input path="age"/></label><br>
+                                        <spring:input path="age"/><br>
+                                        <spring:errors path="age"/>
+                                    </label><br>
                                 </div>
                                 <div class="form-group">
                                     <label>Płeć:<br>
                                         <spring:radiobutton path="sex" value="kobieta"/>Kobieta<br>
-                                        <spring:radiobutton path="sex" value="mężczyzna"/>Mężczyzna</label><br>
+                                        <spring:radiobutton path="sex" value="mężczyzna"/>Mężczyzna<br>
+                                        <spring:errors path="sex"/>
+                                        </label><br>
                                 </div>
                                 <div class="form-group">
                                     <label>Poziom aktywności fizycznej: <br>
@@ -62,6 +70,7 @@
                                         <spring:option value="średnia">Średnia aktywność fizyczna</spring:option>
                                         <spring:option value="duża">Duża aktywność fizyczna</spring:option>
                                         </spring:select><br>
+                                            <spring:errors path="activity"/>
                                 </div>
                                 <div class="form-group">
                                     <label>Cel żywieniowy: <br>
@@ -70,6 +79,7 @@
                                         <spring:option value="constans">Utrzymanie masy ciała</spring:option>
                                         <spring:option value="surplus">Zwiększenie masy ciała</spring:option>
                                         </spring:select><br>
+                                            <spring:errors path="aim"/>
                                 </div>
                                 <div class="form-group">
                                     <spring:button>Oblicz</spring:button>
@@ -78,7 +88,7 @@
                                     </spring:form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="/count_BMI">Oblicz swoje BMI</a>
+                                        <a class="small" href="/count_BMI">Oblicz swoje BMI.</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="/planMeals/Poniedziałek">Zaplanuj posiłki!</a>
