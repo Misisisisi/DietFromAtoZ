@@ -8,6 +8,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -207,36 +208,36 @@
 
 
                     <div class="topbar-divider d-none d-sm-block"></div>
-
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
+                    <a class="mr-2 d-none d-lg-inline text-gray-600" href="<c:url value="/logout" />">Wyloguj</a>
+<%--                    <!-- Nav Item - User Information -->--%>
+<%--                    <li class="nav-item dropdown no-arrow">--%>
+<%--                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"--%>
+<%--                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+<%--                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>--%>
+<%--                            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">--%>
+<%--                        </a>--%>
+<%--                        <!-- Dropdown - User Information -->--%>
+<%--                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"--%>
+<%--                             aria-labelledby="userDropdown">--%>
+<%--                            <a class="dropdown-item" href="#">--%>
+<%--                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>--%>
+<%--                                Profile--%>
+<%--                            </a>--%>
+<%--                            <a class="dropdown-item" href="#">--%>
+<%--                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>--%>
+<%--                                Settings--%>
+<%--                            </a>--%>
+<%--                            <a class="dropdown-item" href="#">--%>
+<%--                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>--%>
+<%--                                Activity Log--%>
+<%--                            </a>--%>
+<%--                            <div class="dropdown-divider"></div>--%>
+<%--                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">--%>
+<%--                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>--%>
+<%--                                Logout--%>
+<%--                            </a>--%>
+<%--                        </div>--%>
+<%--                    </li>--%>
 
                 </ul>
 
@@ -253,32 +254,40 @@
                             <div class="p-5">
                                 <div class="text-left">
                                     <h1 class="h4 text-gray-900 mb-4">Dodaj produkt do bazy:</h1>
+                                    <p class="h6 text-gray-900 mb-4">Podaj wartość energetyczną i wartości odżywcze w przeliczeniu na 100g produktu!</p>
                                 </div>
                     <spring:form action="/addProduct" modelAttribute="createProductForm" method="post">
                     <div class="form-group">
                         <label>Nazwa produktu:
-                            <spring:input path="productName"/></label><br>
+                            <spring:input path="productName"/><br>
+                            <spring:errors path="productName"/>
+                        </label><br>
                     </div>
                     <div class="form-group">
                         <label>Wartość energetyczna [kcal]:
-                            <spring:input path="energyValue"/></label><br>
+                            <spring:input path="energyValue"/><br>
+                            <spring:errors path="energyValue"/></label><br>
                     </div>
                     <div class="form-group">
                         <label>Ilość białka [g]:
-                            <spring:input path="protein"/></label><br>
+                            <spring:input path="protein"/><br>
+                            <spring:errors path="protein"/></label><br>
                     </div>
                     <div class="form-group">
                         <label>Ilość węglowodanów [g]:
-                            <spring:input path="carbohydrates"/></label><br>
+                            <spring:input path="carbohydrates"/><br>
+                            <spring:errors path="carbohydrates"/></label><br>
                     </div>
                     <div class="form-group">
                         <label>Ilość tłuszczu [g]:
-                            <spring:input path="fats"/></label><br>
+                            <spring:input path="fats"/><br>
+                            <spring:errors path="fats"/></label><br>
                     </div>
-                    <div class="form-group">
-                        <label>Waga produktu [g]:
-                            <spring:input path="weight"/></label><br>
-                    </div>
+<%--                    <div class="form-group">--%>
+<%--                        <label>Waga produktu [g]:--%>
+<%--                            <spring:input path="weight"/><br>--%>
+<%--                            <spring:errors path="weight"/><</label><br>--%>
+<%--                    </div>--%>
 
                     <div class="form-group">
                         <spring:button>Dodaj</spring:button>
