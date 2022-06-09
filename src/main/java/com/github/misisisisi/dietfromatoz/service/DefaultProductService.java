@@ -20,7 +20,7 @@ public class DefaultProductService implements ProductService {
 
     @Override
     @Transactional
-    public void saveProduct(CreateProductForm createProductForm) {
+    public void saveProduct(CreateProductForm createProductForm, UserEntity user) {
         productRepository.save(ProductEntity.builder()
                 .productName(createProductForm.getProductName())
                 .energyValue(createProductForm.getEnergyValue())
@@ -28,7 +28,7 @@ public class DefaultProductService implements ProductService {
                 .carbohydrates(createProductForm.getCarbohydrates())
                 .fats(createProductForm.getFats())
                 .weight(100)
-//                .owner(createProductForm.getUser())
+                .owner(user)
                 .build());
 
     }
