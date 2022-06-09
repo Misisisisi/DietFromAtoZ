@@ -1,9 +1,6 @@
 package com.github.misisisisi.dietfromatoz.service;
 
-import com.github.misisisisi.dietfromatoz.model.DayNameEntity;
-import com.github.misisisisi.dietfromatoz.model.MealNameEntity;
-import com.github.misisisisi.dietfromatoz.model.ProductEntity;
-import com.github.misisisisi.dietfromatoz.model.UserEntity;
+import com.github.misisisisi.dietfromatoz.model.*;
 import com.github.misisisisi.dietfromatoz.repository.DayNameRepository;
 import com.github.misisisisi.dietfromatoz.repository.MealNameRepository;
 import com.github.misisisisi.dietfromatoz.repository.ProductRepository;
@@ -15,6 +12,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.util.Set;
 
 @ConditionalOnProperty(name = "spring.jpa.hibernate.ddl-auto", havingValue = "create-drop")
 @Component
@@ -224,11 +223,11 @@ public class TestDataLoader {
                 .weight(100)
                 .build());
         productRepository.save(ProductEntity.builder()
-                .productName("masło")
-                .carbohydrates(0.1)
-                .protein(0.9)
-                .fats(81)
-                .energyValue(716)
+                .productName("mąka")
+                .carbohydrates(76)
+                .protein(10)
+                .fats(1)
+                .energyValue(364)
                 .weight(100)
                 .build());
         productRepository.save(ProductEntity.builder()
@@ -253,6 +252,62 @@ public class TestDataLoader {
                 .protein(0)
                 .fats(100)
                 .energyValue(884)
+                .weight(100)
+                .build());
+        productRepository.save(ProductEntity.builder()
+                .productName("parówki")
+                .carbohydrates(2.6)
+                .protein(11)
+                .fats(19)
+                .energyValue(229)
+                .weight(100)
+                .build());
+        productRepository.save(ProductEntity.builder()
+                .productName("banan")
+                .carbohydrates(23)
+                .protein(1.1)
+                .fats(0.3)
+                .energyValue(88)
+                .weight(100)
+                .build());
+        productRepository.save(ProductEntity.builder()
+                .productName("jabłko")
+                .carbohydrates(14)
+                .protein(0.3)
+                .fats(0.2)
+                .energyValue(52)
+                .weight(100)
+                .build());
+        productRepository.save(ProductEntity.builder()
+                .productName("pomarańcza")
+                .carbohydrates(12)
+                .protein(0.9)
+                .fats(0.1)
+                .energyValue(47)
+                .weight(100)
+                .build());
+        productRepository.save(ProductEntity.builder()
+                .productName("marchewka")
+                .carbohydrates(10)
+                .protein(0.9)
+                .fats(0.2)
+                .energyValue(41)
+                .weight(100)
+                .build());
+        productRepository.save(ProductEntity.builder()
+                .productName("mozzarella")
+                .carbohydrates(3.1)
+                .protein(28)
+                .fats(17)
+                .energyValue(280)
+                .weight(100)
+                .build());
+        productRepository.save(ProductEntity.builder()
+                .productName("serek wiejski")
+                .carbohydrates(3.4)
+                .protein(11)
+                .fats(4.3)
+                .energyValue(98)
                 .weight(100)
                 .build());
         dayNameRepository.save(DayNameEntity.builder()
@@ -283,9 +338,6 @@ public class TestDataLoader {
                 .mealName("II śniadanie")
                 .build());
         mealNameRepository.save(MealNameEntity.builder()
-                .mealName("Lunch")
-                .build());
-        mealNameRepository.save(MealNameEntity.builder()
                 .mealName("Obiad")
                 .build());
         mealNameRepository.save(MealNameEntity.builder()
@@ -294,16 +346,15 @@ public class TestDataLoader {
         mealNameRepository.save(MealNameEntity.builder()
                 .mealName("Kolacja")
                 .build());
-        mealNameRepository.save(MealNameEntity.builder()
-                .mealName("II kolacja")
-                .build());
         userRepository.save(UserEntity.builder()
                 .password(passwordEncoder.encode("xxx"))
                 .email("abc@gmail.com")
                 .lastName("Kowalski")
                 .firstName("Jan")
                 .username("jankowalski")
-                .role("User")
+                .roles(Set.of(RoleEntity.builder()
+                        .name("User")
+                        .build()))
                 .build());
     }
 }
