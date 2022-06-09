@@ -16,7 +16,7 @@ public class AuthService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username)
+        return userRepository.findByUsernameIgnoreCase(username)
                 // Użytkownika z bazy (naszego) zamieniamy na użytkownika Spring Security
                 .map(userEntity -> new User(
                         // podając nazwę użytkownika
