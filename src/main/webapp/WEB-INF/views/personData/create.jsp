@@ -34,9 +34,11 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Cześć! Chcesz obliczyć swoje zapotrzebowanie? Uzupełnij kilka informacji o sobie!</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Cześć! Chcesz obliczyć swoje zapotrzebowanie?
+                                        Uzupełnij kilka informacji o sobie!</h1>
                                 </div>
-                                <spring:form action="/create_personData" modelAttribute="createPersonForm" method="post">
+                                <spring:form action="/create_personData" modelAttribute="createPersonForm"
+                                             method="post">
                                 <div class="form-group">
                                     <label>Masa ciała [kg]<br>
                                         <spring:input path="bodyWeight"/><br>
@@ -60,7 +62,7 @@
                                         <spring:radiobutton path="sex" value="kobieta"/>Kobieta<br>
                                         <spring:radiobutton path="sex" value="mężczyzna"/>Mężczyzna<br>
                                         <spring:errors path="sex"/>
-                                        </label><br>
+                                    </label><br>
                                 </div>
                                 <div class="form-group">
                                     <label>Poziom aktywności fizycznej: <br>
@@ -92,6 +94,10 @@
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="/planMeals/Poniedziałek">Zaplanuj posiłki!</a>
+
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="/home">Strona główna.</a>
 
                                     </div>
                                 </div>
