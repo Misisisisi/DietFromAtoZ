@@ -31,7 +31,7 @@ public class RegisterController {
 
         } else {
             userService.saveUser(userDetails);
-            return "dashboard/homePage";
+            return "dashboard/successRegister";
         }
     }
 }
