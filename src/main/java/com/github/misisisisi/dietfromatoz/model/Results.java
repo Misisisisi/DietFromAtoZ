@@ -12,5 +12,6 @@ public class Results {
     private double resultCPM;
     private double resultEndCPM;
     private double resultPPM;
+    private UserEntity owner;
 
 }
