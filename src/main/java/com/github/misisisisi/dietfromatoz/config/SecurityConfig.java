@@ -1,5 +1,6 @@
 package com.github.misisisisi.dietfromatoz.config;
 
+import com.github.misisisisi.dietfromatoz.security.SpringDataUserDetailsService;
 import com.github.misisisisi.dietfromatoz.service.AuthService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +18,6 @@ import java.nio.charset.StandardCharsets;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    String encodeDay = URLEncoder.encode("Poniedziałek", StandardCharsets.UTF_8);
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -27,6 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthService authService() {
         return new AuthService();
+    }
+    @Bean
+    public SpringDataUserDetailsService customUserDetailsService() {
+        return new SpringDataUserDetailsService();
     }
 
     @Override
@@ -40,10 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/login", "/register").permitAll()
                 //DO ODKOMENTOWANIA!!!!
-//                 .antMatchers("/home/**", "/planMeals/**","/count_BMI/**", "/create_personData/**","/addProduct/**").authenticated()
+                 .antMatchers("/home/**", "/planMeals/**","/count_BMI/**", "/create_personData/**","/addProduct/**/**", "/data/**").authenticated()
 
-
-                // DO WŁĄCZENIA!!!!
 //                .antMatchers("/personData/**").authenticated()
 //                .antMatchers("/create-author").hasRole("ADMIN")
 //                .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
@@ -55,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username") // domyślny, nazwa pola w formularzu logowania dla nazwy użytkownika
                 .passwordParameter("password") // domyślny, nazwa pola w formularzu logowania dla hasła
 //                .defaultSuccessUrl("/homepage") // strona, na którą trafi użytkownik, jeżeli wszedł bezpośrednio na ścieżkę /login, aby się zalogować
-                .defaultSuccessUrl("/planMeals/" + encodeDay, true) // wymusza, że po zalogowaniu ZAWSZE trafia się na wskazaną stronę.
+                .defaultSuccessUrl("/home", true) // wymusza, że po zalogowaniu ZAWSZE trafia się na wskazaną stronę.
                 .and()
                 .logout()
                 .logoutUrl("/logout")
