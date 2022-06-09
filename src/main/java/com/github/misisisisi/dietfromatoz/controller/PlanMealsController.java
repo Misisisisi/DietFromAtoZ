@@ -1,24 +1,19 @@
 package com.github.misisisisi.dietfromatoz.controller;
 
 import com.github.misisisisi.dietfromatoz.model.*;
-import com.github.misisisisi.dietfromatoz.repository.AddProductToMealRepository;
-import com.github.misisisisi.dietfromatoz.repository.DayNameRepository;
-import com.github.misisisisi.dietfromatoz.repository.MealNameRepository;
-import com.github.misisisisi.dietfromatoz.repository.RemoveProductFromMealRepository;
+import com.github.misisisisi.dietfromatoz.repository.*;
 import com.github.misisisisi.dietfromatoz.service.AddProductToMealService;
 import com.github.misisisisi.dietfromatoz.service.DefaultPlanMealService;
-import com.github.misisisisi.dietfromatoz.service.RemoveProductFromMealService;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -37,8 +32,8 @@ public class PlanMealsController {
     private final MealNameRepository mealNameRepository;
     private final AddProductToMealRepository addProductToMealRepository;
     private final RemoveProductFromMealRepository removeProductFromMealRepository;
-
-
+    private final ResultEnergyRepository resultEnergyRepository;
+    private final UserRepository userRepository;
 
 
     @GetMapping("/{dayName}")
@@ -46,6 +41,36 @@ public class PlanMealsController {
         DayNameEntity dayNameEntity = new DayNameEntity(dayName);
         model.addAttribute("nameOfDay", dayNameEntity);
         model.addAttribute("planMealsForm", new PlanMealsForm());
+
+        List<ResultsEnergyEntity> allEnergyValues = resultEnergyRepository.findAll();
+        if (allEnergyValues.isEmpty()) {
+            String emptyEnergyValues = "Nie obliczyłeś swojego zapotrzebowania.";
+            model.addAttribute("emptyEnergyValues", emptyEnergyValues);
+        }
+
+        model.addAttribute("allEnergyValues", allEnergyValues);
+
+        double proteinValue = 0;
+        double carbohydratesValue = 0;
+        double fatValue = 0;
+        double energyValue = 0;
+
+        for (int i = 0; i < allEnergyValues.size(); i++) {
+            energyValue += allEnergyValues.get(i).getResultEndCPM();
+        }
+
+        proteinValue = Math.round((energyValue * 0.2) / 4);
+
+        carbohydratesValue = Math.round((energyValue * 0.5) / 4);
+        fatValue = Math.round((energyValue * 0.3) / 9);
+
+        model.addAttribute("energyValue", energyValue);
+        model.addAttribute("proteinValue", proteinValue);
+        model.addAttribute("carbohydratesValue", carbohydratesValue);
+        model.addAttribute("fatValue", fatValue);
+
+
+
         List<ProductOfMealEntity> allByBreakfast = addProductToMealRepository.findAllBreakfastFromDay(dayName);
         model.addAttribute("allByBreakfast", allByBreakfast);
 
@@ -188,11 +213,12 @@ public class PlanMealsController {
     }
 
     @PostMapping(params = "addProductToFirstMeal")
-    public String addProductToFirstMeal(@ModelAttribute("username") UserEntity userEntity,
-            @ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
+    public String addProductToFirstMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
 
         {
-
+            UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken)SecurityContextHolder.getContext().getAuthentication();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            UserEntity username = userRepository.findUserByUsername(userDetails.getUsername());
             DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
             MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName("Śniadanie");
             ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
@@ -210,7 +236,7 @@ public class PlanMealsController {
             carbohydrates = Math.round(carbohydrates);
             fats = Math.round(fats);
             energyValue = Math.round(energyValue);
-            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName, userEntity);
+            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName, username);
 
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
             String encodeBreakfast = URLEncoder.encode(dayName.getDayName(), StandardCharsets.UTF_8);
@@ -220,14 +246,16 @@ public class PlanMealsController {
     }
 
     @PostMapping(params = "addProductToSecondMeal")
-    public String addProductToSecondMeal(@ModelAttribute("username") UserEntity userEntity, @ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
+    public String addProductToSecondMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
 
         {
 
             DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
             MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName("II śniadanie");
             ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
-
+            UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken)SecurityContextHolder.getContext().getAuthentication();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            UserEntity username = userRepository.findUserByUsername(userDetails.getUsername());
             if (productByName == null) {
                 return "/product/outOfDb";
             }
@@ -241,7 +269,7 @@ public class PlanMealsController {
             carbohydrates = Math.round(carbohydrates);
             fats = Math.round(fats);
             energyValue = Math.round(energyValue);
-            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName, userEntity);
+            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName, username);
 
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
             String encodeSecondBreakfast = URLEncoder.encode(dayName.getDayName(), StandardCharsets.UTF_8);
@@ -251,13 +279,16 @@ public class PlanMealsController {
     }
 
     @PostMapping(params = "addProductToThirdMeal")
-    public String addProductToThirdMeal(@ModelAttribute("username") UserEntity userEntity, @ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
+    public String addProductToThirdMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
 
         {
 
             DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
             MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName("Obiad");
             ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
+            UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken)SecurityContextHolder.getContext().getAuthentication();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            UserEntity username = userRepository.findUserByUsername(userDetails.getUsername());
 
             if (productByName == null) {
                 return "/product/outOfDb";
@@ -272,7 +303,7 @@ public class PlanMealsController {
             carbohydrates = Math.round(carbohydrates);
             fats = Math.round(fats);
             energyValue = Math.round(energyValue);
-            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName, userEntity);
+            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName, username);
 
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
             String encodeLunch = URLEncoder.encode(dayName.getDayName(), StandardCharsets.UTF_8);
@@ -282,13 +313,16 @@ public class PlanMealsController {
     }
 
     @PostMapping(params = "addProductToFourthMeal")
-    public String addProductToFourthMeal(@ModelAttribute("username") UserEntity userEntity, @ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
+    public String addProductToFourthMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
 
         {
 
             DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
             MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName("Podwieczorek");
             ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
+            UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken)SecurityContextHolder.getContext().getAuthentication();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            UserEntity username = userRepository.findUserByUsername(userDetails.getUsername());
 
             if (productByName == null) {
                 return "/product/outOfDb";
@@ -303,7 +337,7 @@ public class PlanMealsController {
             carbohydrates = Math.round(carbohydrates);
             fats = Math.round(fats);
             energyValue = Math.round(energyValue);
-            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName,userEntity);
+            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName,username);
 
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
             String encodeTea = URLEncoder.encode(dayName.getDayName(), StandardCharsets.UTF_8);
@@ -313,13 +347,16 @@ public class PlanMealsController {
     }
 
     @PostMapping(params = "addProductToFifthMeal")
-    public String addProductToFifthMeal(@ModelAttribute("username") UserEntity userEntity, @ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
+    public String addProductToFifthMeal(@ModelAttribute("planMealsForm") PlanMealsForm planMealsForm) {
 
         {
 
             DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
             MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName("Kolacja");
             ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
+            UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken)SecurityContextHolder.getContext().getAuthentication();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            UserEntity username = userRepository.findUserByUsername(userDetails.getUsername());
 
             if (productByName == null) {
                 return "/product/outOfDb";
@@ -334,7 +371,7 @@ public class PlanMealsController {
             carbohydrates = Math.round(carbohydrates);
             fats = Math.round(fats);
             energyValue = Math.round(energyValue);
-            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName, userEntity);
+            ProductsOfMeal productsOfMeal = new ProductsOfMeal(planMealsForm.getProductName(), protein, carbohydrates, fats, energyValue, planMealsForm.getWeight(), dayName, mealName, username);
 
             addProductToMealService.saveProductOfMeal(planMealsForm, productsOfMeal);
             String encodeDinner = URLEncoder.encode(dayName.getDayName(), StandardCharsets.UTF_8);
