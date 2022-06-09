@@ -3,8 +3,6 @@ package com.github.misisisisi.dietfromatoz.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="persons_data")
@@ -28,7 +26,7 @@ public class PersonDataEntity {
 
     private String aim;
     @OneToOne
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "owner_id")
     private UserEntity user;
 
     public PersonDataEntity(double bodyWeight, int bodyHeight, String activity, int age, String sex, String aim) {
