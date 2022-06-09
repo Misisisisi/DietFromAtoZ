@@ -19,5 +19,5 @@ public class ProductsOfMeal {
     double weight;
     DayNameEntity dayName;
     MealNameEntity mealName;
-
+    UserEntity owner;
     }
