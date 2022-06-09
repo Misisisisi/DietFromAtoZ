@@ -136,9 +136,9 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-            <a class="nav-link" href="theme/tables.html">
+            <a class="nav-link" href="/data">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Edytuj dane</span></a>
+                <span>Moje dane</span></a>
         </li>
 
         <!-- Divider -->
