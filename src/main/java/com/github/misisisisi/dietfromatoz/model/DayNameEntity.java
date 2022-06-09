@@ -18,14 +18,8 @@ public class DayNameEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    //    @DateTimeFormat
-//    private LocalDate date;
     @NotBlank
     private String dayName;
-    @ManyToMany
-    private List<MealNameEntity> listOfMealsNames = new ArrayList<>();
-    @ManyToOne
-    private UserEntity owner;
 
 
     public DayNameEntity(String dayName) {
