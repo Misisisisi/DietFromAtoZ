@@ -4,8 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Table(name="meals")
@@ -18,10 +17,5 @@ public class MealNameEntity {
     private long id;
     @NotBlank
     private String mealName;
-    @OneToMany
-    private List<ProductOfMealEntity> listOfProducts = new ArrayList<>();
-    @ManyToOne
-    private UserEntity owner;
-
 
 }
