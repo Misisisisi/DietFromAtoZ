@@ -25,7 +25,7 @@ public class AddProductToMealService {
                 .fats(productsOfMeal.getFats())
                 .mealName(productsOfMeal.getMealName())
                 .dayName(productsOfMeal.getDayName())
-//                .owner(createProductForm.getUser())
+                .owner(productsOfMeal.getOwner())
                 .build());
 
     }
