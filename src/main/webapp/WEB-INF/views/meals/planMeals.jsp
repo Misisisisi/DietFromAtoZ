@@ -132,9 +132,9 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-            <a class="nav-link" href="theme/tables.html">
+            <a class="nav-link" href="/data">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Edytuj dane</span></a>
+                <span>Moje dane</span></a>
         </li>
 
         <!-- Divider -->
@@ -266,6 +266,45 @@
                 <label>Planujesz posiłki na:
                     <spring:input placeholder="Nie wybrałeś/aś dnia" class="m-20 font-weight-bold text-primary" path="dayName" value="${dayName}"/>
                 </label>
+
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">TWOJE ZAPOTRZEBOWANIE NA ENERGIĘ ORAZ MAKROSKŁADNIKI</h6>
+                    </div>
+                    <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="energyTable" width="100%"
+                               cellspacing="0">
+                            <thead>
+                            <tr>
+
+                                <th>Wartość energetyczna [kcal]</th>
+                                <th>Ilość białka [g]</th>
+                                <th>Ilość węglowodanów [g]</th>
+                                <th>Ilość tłuszczu [g]</th>
+                            </tr>
+                            </thead>
+                                <%--                        <tfoot>--%>
+                                <%--                        <tr>--%>
+                                <%--                           --%>
+                                <%--                            <th>${energyValues.resultEndCPM} kcal</th>--%>
+                                <%--                            <th>Dynamicznie ilosć białka razem</th>--%>
+                                <%--                            <th>Dynamicznie ilosć wegli razem</th>--%>
+                                <%--                            <th>Dynamicznie ilosć tłuszczu razem</th>--%>
+                                <%--                        </tr>--%>
+                                <%--                        </tfoot>--%>
+                            <tbody>
+                            <tr>
+
+                                <td>${energyValue} kcal</td>
+                                <td>${proteinValue} g</td>
+                                <td>${carbohydratesValue} g</td>
+                                <td>${fatValue} g</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">PODSUMOWANIE DNIA</h6>
@@ -282,6 +321,7 @@
                                     <th>Ilość węglowodanów [g]</th>
                                     <th>Ilość tłuszczu [g]</th>
                                 </tr>
+                                </thead>
                                 </thead>
                                 <tfoot>
                                 <tr>
