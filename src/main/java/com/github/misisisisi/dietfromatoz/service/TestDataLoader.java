@@ -30,6 +30,16 @@ public class TestDataLoader {
     @EventListener
     public void loadData(ContextRefreshedEvent event) {
         log.debug("Loading data...");
+        userRepository.save(UserEntity.builder()
+                .password(passwordEncoder.encode("admin"))
+                .email("admin@gmail.com")
+                .lastName("Admin")
+                .firstName("admin")
+                .username("admin")
+                .roles(Set.of(RoleEntity.builder()
+                        .name("Admin")
+                        .build()))
+                .build());
         productRepository.save(ProductEntity.builder()
                 .productName("ananas")
                 .carbohydrates(13.0)
@@ -37,6 +47,7 @@ public class TestDataLoader {
                 .fats(0.1)
                 .energyValue(50)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("truskawki")
@@ -45,6 +56,7 @@ public class TestDataLoader {
                 .fats(0.3)
                 .energyValue(32)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("jajko")
@@ -53,6 +65,7 @@ public class TestDataLoader {
                 .fats(11)
                 .energyValue(155)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("chleb")
@@ -61,6 +74,7 @@ public class TestDataLoader {
                 .fats(3.2)
                 .energyValue(264)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("masło")
@@ -69,6 +83,7 @@ public class TestDataLoader {
                 .fats(81)
                 .energyValue(716)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("szynka")
@@ -77,6 +92,7 @@ public class TestDataLoader {
                 .fats(6)
                 .energyValue(145)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("awokado")
@@ -85,6 +101,7 @@ public class TestDataLoader {
                 .fats(15)
                 .energyValue(160)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("ziemniaki")
@@ -93,6 +110,7 @@ public class TestDataLoader {
                 .fats(0.1)
                 .energyValue(76)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("mleko")
@@ -101,6 +119,7 @@ public class TestDataLoader {
                 .fats(1)
                 .energyValue(42)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("ser żółty")
@@ -109,6 +128,7 @@ public class TestDataLoader {
                 .fats(33)
                 .energyValue(402)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("ser biały")
@@ -117,6 +137,7 @@ public class TestDataLoader {
                 .fats(4.3)
                 .energyValue(98)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("makaron")
@@ -125,6 +146,7 @@ public class TestDataLoader {
                 .fats(1.1)
                 .energyValue(131)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("pomidor")
@@ -133,6 +155,7 @@ public class TestDataLoader {
                 .fats(0.2)
                 .energyValue(17)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("ogórek")
@@ -141,6 +164,7 @@ public class TestDataLoader {
                 .fats(0.1)
                 .energyValue(15)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("mięso")
@@ -149,6 +173,7 @@ public class TestDataLoader {
                 .fats(3.5)
                 .energyValue(143)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("tofu")
@@ -157,6 +182,7 @@ public class TestDataLoader {
                 .fats(4.8)
                 .energyValue(76)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("soczewica")
@@ -165,6 +191,7 @@ public class TestDataLoader {
                 .fats(0.4)
                 .energyValue(116)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("ciecierzyca")
@@ -173,6 +200,7 @@ public class TestDataLoader {
                 .fats(6)
                 .energyValue(364)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("sałata")
@@ -181,6 +209,7 @@ public class TestDataLoader {
                 .fats(0.2)
                 .energyValue(14)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("skyr")
@@ -189,6 +218,7 @@ public class TestDataLoader {
                 .fats(0)
                 .energyValue(64)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("majonez")
@@ -197,6 +227,7 @@ public class TestDataLoader {
                 .fats(75)
                 .energyValue(679)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("ketchup")
@@ -205,6 +236,7 @@ public class TestDataLoader {
                 .fats(0.2)
                 .energyValue(111)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("orzechy")
@@ -213,6 +245,7 @@ public class TestDataLoader {
                 .fats(54)
                 .energyValue(606)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("płatki owsiane")
@@ -221,6 +254,7 @@ public class TestDataLoader {
                 .fats(1.4)
                 .energyValue(67)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("mąka")
@@ -229,6 +263,7 @@ public class TestDataLoader {
                 .fats(1)
                 .energyValue(364)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("borówki")
@@ -237,6 +272,7 @@ public class TestDataLoader {
                 .fats(0.3)
                 .energyValue(57)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("oliwa z oliwek")
@@ -245,6 +281,7 @@ public class TestDataLoader {
                 .fats(100)
                 .energyValue(884)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("olej rzepakowy")
@@ -253,6 +290,7 @@ public class TestDataLoader {
                 .fats(100)
                 .energyValue(884)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("parówki")
@@ -261,6 +299,7 @@ public class TestDataLoader {
                 .fats(19)
                 .energyValue(229)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("banan")
@@ -269,6 +308,7 @@ public class TestDataLoader {
                 .fats(0.3)
                 .energyValue(88)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("jabłko")
@@ -277,6 +317,7 @@ public class TestDataLoader {
                 .fats(0.2)
                 .energyValue(52)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("pomarańcza")
@@ -285,6 +326,7 @@ public class TestDataLoader {
                 .fats(0.1)
                 .energyValue(47)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("marchewka")
@@ -293,6 +335,7 @@ public class TestDataLoader {
                 .fats(0.2)
                 .energyValue(41)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("mozzarella")
@@ -301,6 +344,7 @@ public class TestDataLoader {
                 .fats(17)
                 .energyValue(280)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         productRepository.save(ProductEntity.builder()
                 .productName("serek wiejski")
@@ -309,6 +353,7 @@ public class TestDataLoader {
                 .fats(4.3)
                 .energyValue(98)
                 .weight(100)
+                .owner(userRepository.findUserByUsername("admin"))
                 .build());
         dayNameRepository.save(DayNameEntity.builder()
                 .dayName("Poniedziałek")
@@ -356,5 +401,7 @@ public class TestDataLoader {
                         .name("User")
                         .build()))
                 .build());
+
     }
 }
+
