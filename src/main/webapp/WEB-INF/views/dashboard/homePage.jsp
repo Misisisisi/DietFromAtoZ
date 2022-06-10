@@ -90,13 +90,7 @@
                 <span>Zaplanuj posiłki</span></a>
         </li>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <%--                <div class="bg-white py-2 collapse-inner rounded">--%>
-            <%--                    <h6 class="collapse-header">Custom Utilities:</h6>--%>
-            <%--                    <a class="collapse-item" href="theme/utilities-color.html">Colors</a>--%>
-            <%--                    <a class="collapse-item" href="theme/utilities-border.html">Borders</a>--%>
-            <%--                    <a class="collapse-item" href="theme/utilities-animation.html">Animations</a>--%>
-            <%--                    <a class="collapse-item" href="theme/utilities-other.html">Other</a>--%>
-            <%--                </div>--%>
+
         </div>
         </li>
 
@@ -108,25 +102,6 @@
             Addons
         </div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <%--        <li class="nav-item">--%>
-        <%--            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">--%>
-        <%--                <i class="fas fa-fw fa-folder"></i>--%>
-        <%--                <span>Pages</span>--%>
-        <%--            </a>--%>
-        <%--            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">--%>
-        <%--                <div class="bg-white py-2 collapse-inner rounded">--%>
-        <%--                    <h6 class="collapse-header">Login Screens:</h6>--%>
-        <%--                    <a class="collapse-item" href="theme/login.html">Login</a>--%>
-        <%--                    <a class="collapse-item" href="theme/register.html">Register</a>--%>
-        <%--                    <a class="collapse-item" href="theme/forgot-password.html">Forgot Password</a>--%>
-        <%--                    <div class="collapse-divider"></div>--%>
-        <%--                    <h6 class="collapse-header">Other Pages:</h6>--%>
-        <%--                    <a class="collapse-item" href="theme/404.html">404 Page</a>--%>
-        <%--                    <a class="collapse-item" href="theme/blank.html">Blank Page</a>--%>
-        <%--                </div>--%>
-        <%--            </div>--%>
-        <%--        </li>--%>
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
@@ -212,7 +187,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Witaj w aplikacji DietFromAtoZ!</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Witaj ${firstName} ${lastName} w DietFromAtoZ!</h1>
                     <%--                    <p class="mb-4">Poniżej znajdują się wartości, jakie na dziś zaplanowałeś ☺</p>--%>
 
                     <div>
