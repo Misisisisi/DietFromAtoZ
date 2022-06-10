@@ -25,4 +25,14 @@ public class ResultEnergyService {
                 .build());
 
     }
+    @Transactional
+    public void updateEnergyValues(Results resultsEnergy) {
+        energyRepository.save(ResultsEnergyEntity.builder()
+                .id(energyRepository.findResultEnergyEntityByUserName(resultsEnergy.getOwner().getUsername()).getId())
+                .resultCPM(resultsEnergy.getResultCPM())
+                .resultPPM(resultsEnergy.getResultPPM())
+                .resultEndCPM(resultsEnergy.getResultEndCPM())
+                .owner(resultsEnergy.getOwner())
+                .build());
+    }
 }
