@@ -203,6 +203,13 @@
 
                                     </tr>
                                     </thead>
+                                    <tfoot>
+                                    <tr>
+                                    <div class="text-left">
+                                        <a class="medium" href="/create_personData">Edytuj dane.</a>
+                                    </div>
+                                    </tr>
+                                    </tfoot>
 
                                     <tbody>
                                     <tr>
