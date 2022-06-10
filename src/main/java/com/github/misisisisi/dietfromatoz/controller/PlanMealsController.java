@@ -38,11 +38,16 @@ public class PlanMealsController {
 
     @GetMapping("/{dayName}")
     public String prepareView(@PathVariable("dayName") String dayName, Model model) {
+        UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken)SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        UserEntity username = userRepository.findUserByUsername(userDetails.getUsername());
+        String userName = username.getUsername();
+
         DayNameEntity dayNameEntity = new DayNameEntity(dayName);
         model.addAttribute("nameOfDay", dayNameEntity);
         model.addAttribute("planMealsForm", new PlanMealsForm());
 
-        List<ResultsEnergyEntity> allEnergyValues = resultEnergyRepository.findAll();
+        List<ResultsEnergyEntity> allEnergyValues = resultEnergyRepository.findAllByOwner_username(userName);
         if (allEnergyValues.isEmpty()) {
             String emptyEnergyValues = "Nie obliczyłeś swojego zapotrzebowania.";
             model.addAttribute("emptyEnergyValues", emptyEnergyValues);
@@ -71,7 +76,7 @@ public class PlanMealsController {
 
 
 
-        List<ProductOfMealEntity> allByBreakfast = addProductToMealRepository.findAllBreakfastFromDay(dayName);
+        List<ProductOfMealEntity> allByBreakfast = addProductToMealRepository.findAllBreakfastFromDay(dayName, userName);
         model.addAttribute("allByBreakfast", allByBreakfast);
 
         double breakfastEnergy = 0;
@@ -91,7 +96,7 @@ public class PlanMealsController {
         model.addAttribute("breakfastCarbohydrates", breakfastCarbohydrates);
         model.addAttribute("breakfastFats", breakfastFats);
 
-        List<ProductOfMealEntity> allBySecondBreakfast = addProductToMealRepository.findAllSecondBreakfastFromDay(dayName);
+        List<ProductOfMealEntity> allBySecondBreakfast = addProductToMealRepository.findAllSecondBreakfastFromDay(dayName, userName);
         model.addAttribute("allBySecondBreakfast", allBySecondBreakfast);
 
         double secondBreakfastEnergy = 0;
@@ -111,7 +116,7 @@ public class PlanMealsController {
         model.addAttribute("secondBreakfastCarbohydrates", secondBreakfastCarbohydrates);
         model.addAttribute("secondBreakfastFats", secondBreakfastFats);
 
-        List<ProductOfMealEntity> allByLunch = addProductToMealRepository.findAlLunchFromDay(dayName);
+        List<ProductOfMealEntity> allByLunch = addProductToMealRepository.findAlLunchFromDay(dayName, userName);
         model.addAttribute("allByLunch", allByLunch);
 
         double lunchEnergy = 0;
@@ -131,7 +136,7 @@ public class PlanMealsController {
         model.addAttribute("lunchCarbohydrates", lunchCarbohydrates);
         model.addAttribute("lunchFats", lunchFats);
 
-        List<ProductOfMealEntity> allByTea = addProductToMealRepository.findAlTeaFromDay(dayName);
+        List<ProductOfMealEntity> allByTea = addProductToMealRepository.findAlTeaFromDay(dayName, userName);
         model.addAttribute("allByTea", allByTea);
 
         double teaEnergy = 0;
@@ -151,7 +156,7 @@ public class PlanMealsController {
         model.addAttribute("teaCarbohydrates", teaCarbohydrates);
         model.addAttribute("teaFats", teaFats);
 
-        List<ProductOfMealEntity> allByDinner = addProductToMealRepository.findAlDinnerFromDay(dayName);
+        List<ProductOfMealEntity> allByDinner = addProductToMealRepository.findAlDinnerFromDay(dayName, userName);
         model.addAttribute("allByDinner", allByDinner);
 
         double dinnerEnergy = 0;
@@ -171,7 +176,7 @@ public class PlanMealsController {
         model.addAttribute("dinnerCarbohydrates", dinnerCarbohydrates);
         model.addAttribute("dinnerFats", dinnerFats);
 
-        List<ProductOfMealEntity> allFromDay = addProductToMealRepository.findAllProductsFromDay(dayName);
+        List<ProductOfMealEntity> allFromDay = addProductToMealRepository.findAllProductsFromDay(dayName, userName);
         model.addAttribute("allFromDay", allFromDay);
 
         double allDayEnergy = 0;
@@ -219,9 +224,10 @@ public class PlanMealsController {
             UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken)SecurityContextHolder.getContext().getAuthentication();
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             UserEntity username = userRepository.findUserByUsername(userDetails.getUsername());
+            String userName = username.getUsername();
             DayNameEntity dayName = dayNameRepository.findDayNameEntityByDayName(planMealsForm.getDayName());
             MealNameEntity mealName = mealNameRepository.findMealNameEntityByMealName("Śniadanie");
-            ProductEntity productByName = planMealService.loadProductByName(planMealsForm.getProductName());
+            ProductEntity productByName = planMealService.loadProductByNameAndUserName(planMealsForm.getProductName(), userName);
 
             if (productByName == null) {
                 return "/product/outOfDb";
