@@ -27,27 +27,26 @@ public class PersonDataController {
 
     @GetMapping("data")
     public String personData(Model model) {
-
-        List<PersonDataEntity> personData = personRepository.findAll();
-
-        if (personData.size()==0) {
-            String emptyData = "Nie wprowadzałeś jeszcze swoich danych.";
-            model.addAttribute("emptyData", emptyData);
-        }
-        model.addAttribute("personData", personData);
-
-        List<ResultsEnergyEntity> allEnergyValues = resultEnergyRepository.findAll();
-        if (allEnergyValues.size()==0) {
-            String emptyEnergyValues = "Nie obliczyłeś jeszcze swojego zapotrzebowania.";
-            model.addAttribute("emptyEnergyValues", emptyEnergyValues);
-        }
-        model.addAttribute("allEnergyValues", allEnergyValues);
-
         UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         org.springframework.security.core.userdetails.UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         UserEntity username = userRepository.findUserByUsername(userDetails.getUsername());
         String firstName = username.getFirstName();
         String lastName = username.getLastName();
+        String userName = username.getUsername();
+        List<PersonDataEntity> personData = personRepository.findAllByUser_username(userName);
+
+        if (personData.size()==0) {
+            String emptyData = "Nie wprowadziłeś jeszcze swoich danych.";
+            model.addAttribute("emptyData", emptyData);
+        }
+        model.addAttribute("personData", personData);
+
+        List<ResultsEnergyEntity> allEnergyValues = resultEnergyRepository.findAllByOwner_username(userName);
+        if (allEnergyValues.size()==0) {
+            String emptyEnergyValues = "Nie obliczyłeś jeszcze swojego zapotrzebowania.";
+            model.addAttribute("emptyEnergyValues", emptyEnergyValues);
+        }
+        model.addAttribute("allEnergyValues", allEnergyValues);
 
         model.addAttribute("firstName", firstName);
         model.addAttribute("lastName", lastName);
