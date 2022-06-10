@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--<%@ include file="/header.jsp" %>--%>
@@ -39,6 +40,7 @@
                                 </div>
                                 <spring:form action="/create_personData" modelAttribute="createPersonForm"
                                              method="post">
+                                <form:hidden path="id"/>
                                 <div class="form-group">
                                     <label>Masa ciała [kg]<br>
                                         <spring:input path="bodyWeight"/><br>
