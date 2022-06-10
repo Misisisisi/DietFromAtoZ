@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor @Builder
 public class CreateProductForm {
 
+    private long id;
     @NotBlank (message = "Podaj nazwę produktu")
     @ProductExistsConstraint (message = "Produkt już istnieje w bazie")
     private String productName;
