@@ -14,12 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class DefaultPersonService implements PersonService {
 
     private final PersonRepository personRepository;
-    private final UserRepository userRepository;
 
     @Override
     @Transactional
-    public void savePersonData(CreatePersonForm createPersonForm) {
-        UserEntity userEntity;
+    public void savePersonData(CreatePersonForm createPersonForm, UserEntity user) {
         personRepository.save(PersonDataEntity.builder()
                 .bodyHeight(createPersonForm.getBodyHeight())
                 .bodyWeight(createPersonForm.getBodyWeight())
@@ -27,9 +25,25 @@ public class DefaultPersonService implements PersonService {
                 .aim(createPersonForm.getAim())
                 .age(createPersonForm.getAge())
                 .sex(createPersonForm.getSex())
-//                .user(createPersonForm.getUser())
+                .user(user)
                 .build());
 
     }
+    @Override
+    @Transactional
+    public void updateData(CreatePersonForm createPersonForm, UserEntity user) {
+        personRepository.save(PersonDataEntity.builder()
+                .id(personRepository.findPersonDataEntityByUserName(user.getUsername()).getId())
+                .bodyHeight(createPersonForm.getBodyHeight())
+                .bodyWeight(createPersonForm.getBodyWeight())
+                .activity(createPersonForm.getActivity())
+                .aim(createPersonForm.getAim())
+                .age(createPersonForm.getAge())
+                .sex(createPersonForm.getSex())
+                .user(user)
+                .build());
+
+    }
+
 }
 
