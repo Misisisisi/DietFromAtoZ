@@ -52,7 +52,7 @@
 
                                         <hr>
                                         <div class="text-center">
-                                            <a class="small" href="/count_BMI">Oblicz swoje BMI</a>
+                                            <a class="small" href="/count_BMI">Oblicz swoje BMI.</a>
                                         </div>
                                         <div class="text-center">
                                             <a class="small" href="/planMeals/Poniedziałek">Zaplanuj posiłki!</a>
@@ -60,6 +60,10 @@
                                         </div>
                                     <div class="text-center">
                                         <a class="small" href="/home">Strona główna.</a>
+
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="/data">Moje dane.</a>
 
                                     </div>
                                     </div>
