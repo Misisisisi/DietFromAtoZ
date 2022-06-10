@@ -53,7 +53,6 @@
                     <li>Pozwala ocenić Twój stan odżywienia 💪 </li>
                     <li>Policzy Twoje zapotrzebowanie energetyczne oraz ile kalorii powinieneś spożywać, aby osiągnąć swój cel 🏆</li>
                     <li>Będziesz mógł zaplanować posiłki zgodnie z Twoim zapotrzebowaniem 🥑🍒🍕</li>
-                    <li>Dodatkowo z zaplanowanych posiłków przygotujesz szybko listę zakupów 📃🛒</li>
                 </ul>
             </div>
         </div>
@@ -83,7 +82,7 @@
 </section>
 <!-- Footer-->
 <footer class="py-5 bg-dark">
-    <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+    <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; DietFromAtoZ 2022</p></div>
 </footer>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
