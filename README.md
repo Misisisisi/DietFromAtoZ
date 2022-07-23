@@ -14,3 +14,10 @@
 :hot_pepper: If some product is out of database you can add your own product.
 
 
+
+# Technology:
+- Spring Boot
+- Spring Data
+- Spring Security
+- Hibernate
+- JSP
